@@ -43,37 +43,30 @@ DSV4_CHAT_TEMPLATE = """\
 def _register_deepseek_v4() -> None:
     from transformers import AutoConfig, PretrainedConfig
 
-    config_cls = None
-    for path in (
-        "vllm.transformers_utils.configs.deepseek_v4",
-        "vllm.transformers_utils.configs",
-    ):
-        try:
-            mod = __import__(path, fromlist=["DeepseekV4Config"])
-            config_cls = getattr(mod, "DeepseekV4Config", None)
-            if config_cls is not None:
-                break
-        except Exception:
-            continue
+    # Ray 的 .pth hook 会在 dashboard 等基础进程中导入本模块；这里不能导入
+    # vLLM，否则多个子进程并发加载重依赖会触发 MetricsHead 30 秒启动超时。
+    class DeepseekV4Config(PretrainedConfig):
+        model_type = "deepseek_v4"
 
-    if config_cls is None:
-
-        class DeepseekV4Config(PretrainedConfig):
-            model_type = "deepseek_v4"
-
-            def __init__(self, max_position_embeddings: int = 1_048_576, **kwargs):
-                kwargs.setdefault("max_position_embeddings", max_position_embeddings)
-                super().__init__(**kwargs)
-                if getattr(self, "max_position_embeddings", None) is None:
-                    self.max_position_embeddings = max_position_embeddings
-
-        config_cls = DeepseekV4Config
+        def __init__(
+            self,
+            max_position_embeddings: int | None = 1_048_576,
+            rope_parameters: dict | None = None,
+            rope_scaling: dict | None = None,
+            rope_theta: float = 10_000.0,
+            **kwargs,
+        ):
+            self.max_position_embeddings = max_position_embeddings or 1_048_576
+            self.rope_scaling = rope_scaling
+            self.rope_theta = rope_theta
+            self.rope_parameters = dict(rope_scaling or rope_parameters or {})
+            super().__init__(**kwargs)
 
     try:
-        AutoConfig.register("deepseek_v4", config_cls, exist_ok=True)
+        AutoConfig.register("deepseek_v4", DeepseekV4Config, exist_ok=True)
     except TypeError:
         try:
-            AutoConfig.register("deepseek_v4", config_cls)
+            AutoConfig.register("deepseek_v4", DeepseekV4Config)
         except Exception:
             pass
 

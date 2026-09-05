@@ -1,7 +1,295 @@
 {
-  "apiVersion": "forge/recipe-lock/v3",
+  "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "file",
+      "value": "examples/run_grpo.py"
+    },
+    "params": {
+      "activation_checkpointing": {
+        "path": "policy.dtensor_cfg.activation_checkpointing",
+        "type": "bool"
+      },
+      "adv_estimator": {
+        "path": "grpo.adv_estimator.name",
+        "type": "enum"
+      },
+      "adv_minus_baseline": {
+        "path": "grpo.adv_estimator.minus_baseline",
+        "type": "bool"
+      },
+      "advantage_clip_high": {
+        "path": "grpo.advantage_clip_high",
+        "type": "float"
+      },
+      "advantage_clip_low": {
+        "path": "grpo.advantage_clip_low",
+        "type": "float"
+      },
+      "async_grpo_enabled": {
+        "path": "grpo.async_grpo.enabled",
+        "type": "bool"
+      },
+      "async_in_flight_weight_updates": {
+        "path": "grpo.async_grpo.in_flight_weight_updates",
+        "type": "bool"
+      },
+      "async_max_trajectory_age_steps": {
+        "path": "grpo.async_grpo.max_trajectory_age_steps",
+        "type": "int"
+      },
+      "batch_multiplier": {
+        "path": "grpo.batch_multiplier",
+        "type": "int"
+      },
+      "checkpoint_keep_top_k": {
+        "path": "checkpointing.keep_top_k",
+        "type": "int"
+      },
+      "checkpoint_save_period": {
+        "path": "checkpointing.save_period",
+        "type": "int"
+      },
+      "context_parallel_size": {
+        "path": "policy.dtensor_cfg.context_parallel_size",
+        "type": "int"
+      },
+      "dynamic_batching": {
+        "path": "policy.dynamic_batching.enabled",
+        "type": "bool"
+      },
+      "dynamic_sampling_max_gen_batches": {
+        "path": "grpo.dynamic_sampling_max_gen_batches",
+        "type": "int"
+      },
+      "generation_batch_size": {
+        "path": "policy.generation_batch_size",
+        "type": "int"
+      },
+      "learning_rate": {
+        "path": "policy.optimizer.kwargs.lr",
+        "type": "float"
+      },
+      "logprob_batch_size": {
+        "path": "policy.logprob_batch_size",
+        "type": "int"
+      },
+      "lora_alpha": {
+        "path": "policy.dtensor_cfg.lora_cfg.alpha",
+        "type": "int"
+      },
+      "lora_dim": {
+        "path": "policy.dtensor_cfg.lora_cfg.dim",
+        "type": "int"
+      },
+      "lora_enabled": {
+        "path": "policy.dtensor_cfg.lora_cfg.enabled",
+        "type": "bool"
+      },
+      "max_grad_norm": {
+        "path": "policy.max_grad_norm",
+        "type": "float"
+      },
+      "max_new_tokens": {
+        "path": "policy.generation.max_new_tokens",
+        "type": "int"
+      },
+      "max_num_epochs": {
+        "path": "grpo.max_num_epochs",
+        "type": "int"
+      },
+      "max_num_steps": {
+        "path": "grpo.max_num_steps",
+        "type": "int"
+      },
+      "max_rollout_turns": {
+        "path": "grpo.max_rollout_turns",
+        "type": "int"
+      },
+      "max_total_sequence_length": {
+        "path": "policy.max_total_sequence_length",
+        "type": "int"
+      },
+      "max_val_samples": {
+        "path": "grpo.max_val_samples",
+        "type": "int"
+      },
+      "megatron_learning_rate": {
+        "path": "policy.megatron_cfg.optimizer.lr",
+        "type": "float"
+      },
+      "megatron_peft_alpha": {
+        "path": "policy.megatron_cfg.peft.alpha",
+        "type": "int"
+      },
+      "megatron_peft_dim": {
+        "path": "policy.megatron_cfg.peft.dim",
+        "type": "int"
+      },
+      "normalize_rewards": {
+        "path": "grpo.normalize_rewards",
+        "type": "bool"
+      },
+      "num_generations_per_prompt": {
+        "path": "grpo.num_generations_per_prompt",
+        "type": "int"
+      },
+      "num_prompts_per_step": {
+        "path": "grpo.num_prompts_per_step",
+        "type": "int"
+      },
+      "overlong_buffer_length": {
+        "path": "grpo.reward_shaping.overlong_buffer_length",
+        "type": "int"
+      },
+      "overlong_buffer_penalty": {
+        "path": "grpo.reward_shaping.overlong_buffer_penalty",
+        "type": "float"
+      },
+      "overlong_filtering": {
+        "path": "grpo.overlong_filtering",
+        "type": "bool"
+      },
+      "precision": {
+        "path": "policy.precision",
+        "type": "enum"
+      },
+      "ratio_clip_c": {
+        "path": "loss_fn.ratio_clip_c",
+        "type": "float"
+      },
+      "ratio_clip_max": {
+        "path": "loss_fn.ratio_clip_max",
+        "type": "float"
+      },
+      "ratio_clip_min": {
+        "path": "loss_fn.ratio_clip_min",
+        "type": "float"
+      },
+      "reference_policy_kl_penalty": {
+        "path": "loss_fn.reference_policy_kl_penalty",
+        "type": "float"
+      },
+      "reference_policy_kl_type": {
+        "path": "loss_fn.reference_policy_kl_type",
+        "type": "enum"
+      },
+      "reward_shaping_enabled": {
+        "path": "grpo.reward_shaping.enabled",
+        "type": "bool"
+      },
+      "reward_shaping_max_response_length": {
+        "path": "grpo.reward_shaping.max_response_length",
+        "type": "int"
+      },
+      "seed": {
+        "path": "grpo.seed",
+        "type": "int"
+      },
+      "sequence_level_importance_ratios": {
+        "path": "loss_fn.sequence_level_importance_ratios",
+        "type": "bool"
+      },
+      "sequence_packing": {
+        "path": "policy.sequence_packing.enabled",
+        "type": "bool"
+      },
+      "temperature": {
+        "path": "policy.generation.temperature",
+        "type": "float"
+      },
+      "tensor_parallel_size": {
+        "path": "policy.dtensor_cfg.tensor_parallel_size",
+        "type": "int"
+      },
+      "token_level_loss": {
+        "path": "loss_fn.token_level_loss",
+        "type": "bool"
+      },
+      "top_k": {
+        "path": "policy.generation.top_k",
+        "type": "int"
+      },
+      "top_p": {
+        "path": "policy.generation.top_p",
+        "type": "float"
+      },
+      "train_global_batch_size": {
+        "path": "policy.train_global_batch_size",
+        "type": "int"
+      },
+      "train_micro_batch_size": {
+        "path": "policy.train_micro_batch_size",
+        "type": "int"
+      },
+      "truncated_importance_sampling_ratio": {
+        "path": "loss_fn.truncated_importance_sampling_ratio",
+        "type": "float"
+      },
+      "truncated_importance_sampling_ratio_min": {
+        "path": "loss_fn.truncated_importance_sampling_ratio_min",
+        "type": "float"
+      },
+      "truncated_importance_sampling_type": {
+        "path": "loss_fn.truncated_importance_sampling_type",
+        "type": "enum"
+      },
+      "use_dynamic_sampling": {
+        "path": "grpo.use_dynamic_sampling",
+        "type": "bool"
+      },
+      "use_importance_sampling_correction": {
+        "path": "loss_fn.use_importance_sampling_correction",
+        "type": "bool"
+      },
+      "use_kl_in_reward": {
+        "path": "loss_fn.use_kl_in_reward",
+        "type": "bool"
+      },
+      "use_leave_one_out_baseline": {
+        "path": "grpo.use_leave_one_out_baseline",
+        "type": "bool"
+      },
+      "use_on_policy_kl_approximation": {
+        "path": "loss_fn.use_on_policy_kl_approximation",
+        "type": "bool"
+      },
+      "val_at_end": {
+        "path": "grpo.val_at_end",
+        "type": "bool"
+      },
+      "val_at_start": {
+        "path": "grpo.val_at_start",
+        "type": "bool"
+      },
+      "val_batch_size": {
+        "path": "grpo.val_batch_size",
+        "type": "int"
+      },
+      "val_period": {
+        "path": "grpo.val_period",
+        "type": "int"
+      },
+      "vllm_enforce_eager": {
+        "path": "policy.generation.vllm_cfg.enforce_eager",
+        "type": "bool"
+      },
+      "vllm_gpu_memory_utilization": {
+        "path": "policy.generation.vllm_cfg.gpu_memory_utilization",
+        "type": "float"
+      },
+      "vllm_tensor_parallel_size": {
+        "path": "policy.generation.vllm_cfg.tensor_parallel_size",
+        "type": "int"
+      },
+      "weight_decay": {
+        "path": "policy.optimizer.kwargs.weight_decay",
+        "type": "float"
+      }
+    }
+  },
   "created_by": {
-    "core_version": "0.3.34"
+    "core_version": "0.3.37"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -9,8 +297,8 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:1c53197d9c9ff596e667b2f443ad2579b844b1a47ea41d0cc85d973e73a96b9e",
-    "manifest_digest": "sha256:1786a235061551e802d69887b43347a3329ee9b0b19223297b83992a27b080a6",
+    "digest": "sha256:bfd553de051f07d17374af13defd876d8a147c2761f9399c66d1c367a7117ad9",
+    "manifest_digest": "sha256:410d8498af7ebd02fc1f2003e1cc4d34ff606fa9cfaa00145eedbd9f752f6d08",
     "name": "nemo-rl/grpo",
     "template_digest": "sha256:1ad285b961f65d58d8d4f45bcf99cce0aacec1ab600be0972b8fd6bb37f9bb2a",
     "version": "0.7.0"

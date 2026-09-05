@@ -1,7 +1,91 @@
 {
-  "apiVersion": "forge/recipe-lock/v3",
+  "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "module",
+      "value": "verl.trainer.main_ppo"
+    },
+    "params": {
+      "custom_reward_name": {
+        "path": "custom_reward_function.name",
+        "type": "str"
+      },
+      "custom_reward_path": {
+        "path": "custom_reward_function.path",
+        "type": "str"
+      },
+      "gpu_memory_utilization": {
+        "path": "actor_rollout_ref.rollout.gpu_memory_utilization",
+        "type": "float"
+      },
+      "kl_loss_coef": {
+        "path": "actor_rollout_ref.actor.kl_loss_coef",
+        "type": "float"
+      },
+      "kl_loss_type": {
+        "path": "actor_rollout_ref.actor.kl_loss_type",
+        "type": "enum"
+      },
+      "learning_rate": {
+        "path": "actor_rollout_ref.actor.optim.lr",
+        "type": "float"
+      },
+      "lr_warmup_steps_ratio": {
+        "path": "actor_rollout_ref.actor.optim.lr_warmup_steps_ratio",
+        "type": "float"
+      },
+      "max_num_epochs": {
+        "path": "trainer.total_epochs",
+        "type": "int"
+      },
+      "max_prompt_length": {
+        "path": "data.max_prompt_length",
+        "type": "int"
+      },
+      "max_response_length": {
+        "path": "data.max_response_length",
+        "type": "int"
+      },
+      "ppo_micro_batch_size_per_gpu": {
+        "path": "actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu",
+        "type": "int"
+      },
+      "ppo_mini_batch_size": {
+        "path": "actor_rollout_ref.actor.ppo_mini_batch_size",
+        "type": "int"
+      },
+      "rollout_tensor_parallel_size": {
+        "path": "actor_rollout_ref.rollout.tensor_model_parallel_size",
+        "type": "int"
+      },
+      "rollouts_per_prompt": {
+        "path": "actor_rollout_ref.rollout.n",
+        "type": "int"
+      },
+      "save_freq": {
+        "path": "trainer.save_freq",
+        "type": "int"
+      },
+      "test_freq": {
+        "path": "trainer.test_freq",
+        "type": "int"
+      },
+      "train_batch_size": {
+        "path": "data.train_batch_size",
+        "type": "int"
+      },
+      "use_kl_in_reward": {
+        "path": "algorithm.use_kl_in_reward",
+        "type": "bool"
+      },
+      "use_kl_loss": {
+        "path": "actor_rollout_ref.actor.use_kl_loss",
+        "type": "bool"
+      }
+    }
+  },
   "created_by": {
-    "core_version": "0.3.34"
+    "core_version": "0.3.37"
   },
   "framework": {
     "kind": "verl",
@@ -9,8 +93,8 @@
     "version": "0.9.0"
   },
   "recipe": {
-    "digest": "sha256:cfef93d783b40ac3ad315ffb6ede80f2354525eee5d880916caf43a74e60a601",
-    "manifest_digest": "sha256:5f037ff131560614f07d6c1baf712c9f7f9567a8b0819e8adb8cd48b8c3691dc",
+    "digest": "sha256:55119ea676380b35ed5fdacb3da367c8abb732afae86223e1f5515cc1ede8b34",
+    "manifest_digest": "sha256:2580168b80745fadcebbcb3281c5576f40c234ae259034712d2a4e89739e4320",
     "name": "verl/grpo",
     "template_digest": "sha256:0188f6bfa08a2c82cc985080e7775ed0295d2d0753fe2871db9dbf58c93426d0",
     "version": "0.9.0"

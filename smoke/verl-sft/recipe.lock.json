@@ -1,7 +1,14 @@
 {
-  "apiVersion": "forge/recipe-lock/v3",
+  "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "module",
+      "value": "verl.trainer.sft_trainer"
+    },
+    "params": {}
+  },
   "created_by": {
-    "core_version": "0.3.34"
+    "core_version": "0.3.37"
   },
   "framework": {
     "kind": "verl",
@@ -9,8 +16,8 @@
     "version": "0.9.0"
   },
   "recipe": {
-    "digest": "sha256:54fd89d7f08fb8bc4a86819fa6daca9eeb602badd942e780a9781de4f07d52e0",
-    "manifest_digest": "sha256:9572eb910d54a06eacf46c9e3bcee51ab1760994032f0d5736d3a66761484d3b",
+    "digest": "sha256:96e5121feba7f23b81619c8818b6ff6e02f084c3f1fb501bca95f60f1b7ff4e0",
+    "manifest_digest": "sha256:853a132126cf3d103c061f7047000f35cf640037250a2dc0d5e39f38f671b177",
     "name": "verl/sft",
     "template_digest": "sha256:f73130632a88d3962579778972980874712722af3fa287a3b1c820489a19747b",
     "version": "0.9.0"

@@ -1,7 +1,14 @@
 {
-  "apiVersion": "forge/recipe-lock/v3",
+  "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "module",
+      "value": "verl.trainer.main_ppo"
+    },
+    "params": {}
+  },
   "created_by": {
-    "core_version": "0.3.34"
+    "core_version": "0.3.37"
   },
   "framework": {
     "kind": "verl",
@@ -9,8 +16,8 @@
     "version": "0.9.0"
   },
   "recipe": {
-    "digest": "sha256:cfef93d783b40ac3ad315ffb6ede80f2354525eee5d880916caf43a74e60a601",
-    "manifest_digest": "sha256:5f037ff131560614f07d6c1baf712c9f7f9567a8b0819e8adb8cd48b8c3691dc",
+    "digest": "sha256:55119ea676380b35ed5fdacb3da367c8abb732afae86223e1f5515cc1ede8b34",
+    "manifest_digest": "sha256:2580168b80745fadcebbcb3281c5576f40c234ae259034712d2a4e89739e4320",
     "name": "verl/grpo",
     "template_digest": "sha256:0188f6bfa08a2c82cc985080e7775ed0295d2d0753fe2871db9dbf58c93426d0",
     "version": "0.9.0"
