@@ -1,63 +1,7 @@
 {
   "apiVersion": "forge/recipe-lock/v4",
-  "bindings": {
-    "entrypoint": {
-      "kind": "experiment",
-      "value": "train.py"
-    },
-    "params": {
-      "bf16": {
-        "path": "bf16",
-        "type": "bool"
-      },
-      "eval_steps": {
-        "path": "eval_steps",
-        "type": "int"
-      },
-      "eval_strategy": {
-        "path": "eval_strategy",
-        "type": "enum"
-      },
-      "gradient_accumulation_steps": {
-        "path": "gradient_accumulation_steps",
-        "type": "int"
-      },
-      "learning_rate": {
-        "path": "learning_rate",
-        "type": "float"
-      },
-      "logging_steps": {
-        "path": "logging_steps",
-        "type": "int"
-      },
-      "max_completion_length": {
-        "path": "max_completion_length",
-        "type": "int"
-      },
-      "max_prompt_length": {
-        "path": "max_prompt_length",
-        "type": "int"
-      },
-      "max_steps": {
-        "path": "max_steps",
-        "type": "int"
-      },
-      "num_generations": {
-        "path": "num_generations",
-        "type": "int"
-      },
-      "per_device_train_batch_size": {
-        "path": "per_device_train_batch_size",
-        "type": "int"
-      },
-      "save_steps": {
-        "path": "save_steps",
-        "type": "int"
-      }
-    }
-  },
   "created_by": {
-    "core_version": "0.3.37"
+    "core_version": "0.3.39"
   },
   "framework": {
     "kind": "trl",

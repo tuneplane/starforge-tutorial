@@ -1,14 +1,7 @@
 {
   "apiVersion": "forge/recipe-lock/v4",
-  "bindings": {
-    "entrypoint": {
-      "kind": "module",
-      "value": "verl.trainer.main_ppo"
-    },
-    "params": {}
-  },
   "created_by": {
-    "core_version": "0.3.37"
+    "core_version": "0.3.39"
   },
   "framework": {
     "kind": "verl",
