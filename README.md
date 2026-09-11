@@ -32,7 +32,8 @@ sf init my-lab --yes
 | `verl-grpo_deepseek-v4-flash_qa-tools_v1` | `verl/grpo` | DSv4-Flash-0731 GRPO + Megatron LoRA, 8×H200 |
 | `trl-grpo_qwen3.5-9b_qa-tools_v1` | `trl/grpo` | Same scene, TRL `tools=` |
 | `verl-grpo_qwen3.5-9b_rtl-agent_v1` | `verl/grpo` | RTL design agent: compiler-in-the-loop, three-stage reward ([data guide](docs/rtl-dataset.md)) |
-| `pytorch-imgcls_simple-cnn_mnist_v1` | `pytorch/image-classification` | Not an LLM: a plain PyTorch CNN on MNIST, via a platform dataset or a volume |
+| `pytorch-imgcls_simple-cnn_mnist_v1` | `pytorch/image-classification` | Not an LLM: a plain PyTorch CNN, MNIST in its native idx format |
+| `pytorch-imgcls_simple-cnn_digit-images_v1` | `pytorch/image-classification` | The same CNN over **your own images**: PNGs in `ImageFolder` layout, uploaded as a dataset (volume variant in its README) |
 
 `common/` ships with the job package (data scripts, environments, rewards). `plugins/` has example algorithm / data-prep plugins. `smoke/` is a tiny-GPU verl check.
 

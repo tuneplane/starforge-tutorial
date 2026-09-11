@@ -36,3 +36,5 @@ jobs:
             uv run --project "$GITHUB_WORKSPACE/starforge" sf validate grpo_qwen3.5-4b_gsm8k_v1
           PYTHONPATH="$GITHUB_WORKSPACE/starforge/core" \
             uv run --project "$GITHUB_WORKSPACE/starforge" sf validate pytorch-imgcls_simple-cnn_mnist_v1
+          PYTHONPATH="$GITHUB_WORKSPACE/starforge/core" \
+            uv run --project "$GITHUB_WORKSPACE/starforge" sf validate pytorch-imgcls_simple-cnn_digit-images_v1
