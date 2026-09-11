@@ -281,7 +281,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.50"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -289,7 +289,7 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:acb44a2899587e7d388fa78ed6c2da1f45a655456a75ef0d59495e7e7718bdaf",
+    "digest": "sha256:c0b900db15a7a0649710d510164220b638b6947aa40c5c7212f9a4bf7d54805a",
     "manifest_digest": "sha256:4497d249a6b57c6f9afcd5ccf3537db3ce7cd11664fca2d69cef706ae70bfe20",
     "name": "nemo-rl/grpo",
     "template_digest": "sha256:1ad285b961f65d58d8d4f45bcf99cce0aacec1ab600be0972b8fd6bb37f9bb2a",

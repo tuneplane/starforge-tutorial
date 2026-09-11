@@ -1,7 +1,123 @@
 {
   "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "file",
+      "value": "examples/run_sft.py"
+    },
+    "params": {
+      "activation_checkpointing": {
+        "path": "policy.dtensor_cfg.activation_checkpointing",
+        "type": "bool"
+      },
+      "checkpoint_keep_top_k": {
+        "path": "checkpointing.keep_top_k",
+        "type": "int"
+      },
+      "checkpoint_save_period": {
+        "path": "checkpointing.save_period",
+        "type": "int"
+      },
+      "context_parallel_size": {
+        "path": "policy.dtensor_cfg.context_parallel_size",
+        "type": "int"
+      },
+      "dynamic_batching": {
+        "path": "policy.dynamic_batching.enabled",
+        "type": "bool"
+      },
+      "learning_rate": {
+        "path": "policy.optimizer.kwargs.lr",
+        "type": "float"
+      },
+      "lora_alpha": {
+        "path": "policy.dtensor_cfg.lora_cfg.alpha",
+        "type": "int"
+      },
+      "lora_dim": {
+        "path": "policy.dtensor_cfg.lora_cfg.dim",
+        "type": "int"
+      },
+      "lora_enabled": {
+        "path": "policy.dtensor_cfg.lora_cfg.enabled",
+        "type": "bool"
+      },
+      "max_grad_norm": {
+        "path": "policy.max_grad_norm",
+        "type": "float"
+      },
+      "max_num_epochs": {
+        "path": "sft.max_num_epochs",
+        "type": "int"
+      },
+      "max_num_steps": {
+        "path": "sft.max_num_steps",
+        "type": "int"
+      },
+      "max_total_sequence_length": {
+        "path": "policy.max_total_sequence_length",
+        "type": "int"
+      },
+      "only_unmask_final": {
+        "path": "sft.only_unmask_final",
+        "type": "bool"
+      },
+      "precision": {
+        "path": "policy.precision",
+        "type": "enum"
+      },
+      "seed": {
+        "path": "sft.seed",
+        "type": "int"
+      },
+      "sequence_packing": {
+        "path": "policy.sequence_packing.enabled",
+        "type": "bool"
+      },
+      "tensor_parallel_size": {
+        "path": "policy.dtensor_cfg.tensor_parallel_size",
+        "type": "int"
+      },
+      "train_global_batch_size": {
+        "path": "policy.train_global_batch_size",
+        "type": "int"
+      },
+      "train_micro_batch_size": {
+        "path": "policy.train_micro_batch_size",
+        "type": "int"
+      },
+      "val_at_end": {
+        "path": "sft.val_at_end",
+        "type": "bool"
+      },
+      "val_at_start": {
+        "path": "sft.val_at_start",
+        "type": "bool"
+      },
+      "val_batches": {
+        "path": "sft.val_batches",
+        "type": "int"
+      },
+      "val_global_batch_size": {
+        "path": "sft.val_global_batch_size",
+        "type": "int"
+      },
+      "val_micro_batch_size": {
+        "path": "sft.val_micro_batch_size",
+        "type": "int"
+      },
+      "val_period": {
+        "path": "sft.val_period",
+        "type": "int"
+      },
+      "weight_decay": {
+        "path": "policy.optimizer.kwargs.weight_decay",
+        "type": "float"
+      }
+    }
+  },
   "created_by": {
-    "core_version": "0.3.50"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -9,7 +125,7 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:db203c970c14f86e0431d26c3377cdf00e97a9b4b0b0a9fcb78f182670802265",
+    "digest": "sha256:c90058ffe1b94357de6df695dcfe8efe037eb2b551ddcbf8547fd21673369b8d",
     "manifest_digest": "sha256:fd789df12cd02f6b4bd3c55a3eea690458388c501f2d029987f88874eec16ceb",
     "name": "nemo-rl/sft",
     "template_digest": "sha256:0149a6f4b0ed9749ca4055dfd6f5469742fcca16e81bccd8d7657c5411eab592",

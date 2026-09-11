@@ -65,7 +65,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.52"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "pytorch",
@@ -73,7 +73,7 @@
     "version": "2.14.0"
   },
   "recipe": {
-    "digest": "sha256:8332e32d1651a2c2913477dabfdb2568e8ac7bdad6bb25980975a240b6ac1e1b",
+    "digest": "sha256:12d22ed6e9319f3f3184038141fd79244eb4c1463143fbb34001bf270dc7e326",
     "manifest_digest": "sha256:4d064626a7faf1ecb3a1088533ec19fa0e6914e4addff2d206e5dfc8e54c9e22",
     "name": "pytorch/image-classification",
     "template_digest": "sha256:1eac2ae3783dea60a50fb577597f83ce5ce147c53df59e49e384953f9d31844a",

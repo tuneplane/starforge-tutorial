@@ -1,7 +1,63 @@
 {
   "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "experiment",
+      "value": "train.py"
+    },
+    "params": {
+      "bf16": {
+        "path": "bf16",
+        "type": "bool"
+      },
+      "eval_steps": {
+        "path": "eval_steps",
+        "type": "int"
+      },
+      "eval_strategy": {
+        "path": "eval_strategy",
+        "type": "enum"
+      },
+      "gradient_accumulation_steps": {
+        "path": "gradient_accumulation_steps",
+        "type": "int"
+      },
+      "learning_rate": {
+        "path": "learning_rate",
+        "type": "float"
+      },
+      "logging_steps": {
+        "path": "logging_steps",
+        "type": "int"
+      },
+      "max_completion_length": {
+        "path": "max_completion_length",
+        "type": "int"
+      },
+      "max_prompt_length": {
+        "path": "max_prompt_length",
+        "type": "int"
+      },
+      "max_steps": {
+        "path": "max_steps",
+        "type": "int"
+      },
+      "num_generations": {
+        "path": "num_generations",
+        "type": "int"
+      },
+      "per_device_train_batch_size": {
+        "path": "per_device_train_batch_size",
+        "type": "int"
+      },
+      "save_steps": {
+        "path": "save_steps",
+        "type": "int"
+      }
+    }
+  },
   "created_by": {
-    "core_version": "0.3.50"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "trl",
@@ -9,7 +65,7 @@
     "version": "1.10.0"
   },
   "recipe": {
-    "digest": "sha256:bc82593df2b34bb56b80890a800ae1b74147195114c1ddfeed48a88efbdaaff9",
+    "digest": "sha256:f3871cea5db87b4629827506432070f63b24207ba7f04ffbe64ea5619014fba7",
     "manifest_digest": "sha256:223cd236d7d4cbdf7e9124e6e0718eed6a3c3582565ef00a1ce7196ebca15973",
     "name": "trl/grpo",
     "template_digest": "sha256:b155d1c3446de3488431c59c0e6e86b6ab17742f8bcc4393edbf1a03afa0a496",

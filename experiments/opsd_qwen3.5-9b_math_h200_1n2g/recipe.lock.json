@@ -1,7 +1,147 @@
 {
   "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "experiment",
+      "value": "run.py"
+    },
+    "params": {
+      "activation_checkpointing": {
+        "path": "policy.dtensor_cfg.activation_checkpointing",
+        "type": "bool"
+      },
+      "checkpoint_keep_top_k": {
+        "path": "checkpointing.keep_top_k",
+        "type": "int"
+      },
+      "checkpoint_save_period": {
+        "path": "checkpointing.save_period",
+        "type": "int"
+      },
+      "context_parallel_size": {
+        "path": "policy.dtensor_cfg.context_parallel_size",
+        "type": "int"
+      },
+      "dynamic_batching": {
+        "path": "policy.dynamic_batching.enabled",
+        "type": "bool"
+      },
+      "generation_batch_size": {
+        "path": "policy.generation_batch_size",
+        "type": "int"
+      },
+      "learning_rate": {
+        "path": "policy.optimizer.kwargs.lr",
+        "type": "float"
+      },
+      "logprob_batch_size": {
+        "path": "policy.logprob_batch_size",
+        "type": "int"
+      },
+      "max_grad_norm": {
+        "path": "policy.max_grad_norm",
+        "type": "float"
+      },
+      "max_new_tokens": {
+        "path": "policy.generation.max_new_tokens",
+        "type": "int"
+      },
+      "max_num_epochs": {
+        "path": "distillation.max_num_epochs",
+        "type": "int"
+      },
+      "max_num_steps": {
+        "path": "distillation.max_num_steps",
+        "type": "int"
+      },
+      "max_rollout_turns": {
+        "path": "distillation.max_rollout_turns",
+        "type": "int"
+      },
+      "max_total_sequence_length": {
+        "path": "policy.max_total_sequence_length",
+        "type": "int"
+      },
+      "max_val_samples": {
+        "path": "distillation.max_val_samples",
+        "type": "int"
+      },
+      "num_generations_per_prompt": {
+        "path": "distillation.num_generations_per_prompt",
+        "type": "int"
+      },
+      "num_prompts_per_step": {
+        "path": "distillation.num_prompts_per_step",
+        "type": "int"
+      },
+      "per_token_kl_clip": {
+        "path": "opsd.per_token_kl_clip",
+        "type": "float"
+      },
+      "precision": {
+        "path": "policy.precision",
+        "type": "enum"
+      },
+      "seed": {
+        "path": "distillation.seed",
+        "type": "int"
+      },
+      "sequence_packing": {
+        "path": "policy.sequence_packing.enabled",
+        "type": "bool"
+      },
+      "teacher_mode": {
+        "path": "opsd.teacher_mode",
+        "type": "enum"
+      },
+      "temperature": {
+        "path": "policy.generation.temperature",
+        "type": "float"
+      },
+      "tensor_parallel_size": {
+        "path": "policy.dtensor_cfg.tensor_parallel_size",
+        "type": "int"
+      },
+      "top_p": {
+        "path": "policy.generation.top_p",
+        "type": "float"
+      },
+      "topk_logits_k": {
+        "path": "distillation.topk_logits_k",
+        "type": "int"
+      },
+      "train_global_batch_size": {
+        "path": "policy.train_global_batch_size",
+        "type": "int"
+      },
+      "train_micro_batch_size": {
+        "path": "policy.train_micro_batch_size",
+        "type": "int"
+      },
+      "val_at_end": {
+        "path": "distillation.val_at_end",
+        "type": "bool"
+      },
+      "val_at_start": {
+        "path": "distillation.val_at_start",
+        "type": "bool"
+      },
+      "val_batch_size": {
+        "path": "distillation.val_batch_size",
+        "type": "int"
+      },
+      "val_period": {
+        "path": "distillation.val_period",
+        "type": "int"
+      },
+      "weight_decay": {
+        "path": "policy.optimizer.kwargs.weight_decay",
+        "type": "float"
+      }
+    }
+  },
   "created_by": {
-    "core_version": "0.3.50"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -9,7 +149,7 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:2b5c531b6128d93584f89a8074fc28be79e21e58cdc112723f96d3dd862a81f0",
+    "digest": "sha256:104d75ab872567b6b8d8f1f60da69f4987b2406c2dc00cdd7e03bb3715da52ef",
     "manifest_digest": "sha256:36a4b782573fad35b4cc7dbcf3d3b33a5ca9b7a97f6c6cc995667277e37f0c64",
     "name": "nemo-rl/opsd",
     "template_digest": "sha256:1eebf022c38cd52d272de8d9f03c94aa93f7d7e166310b4a091466d3592742c9",

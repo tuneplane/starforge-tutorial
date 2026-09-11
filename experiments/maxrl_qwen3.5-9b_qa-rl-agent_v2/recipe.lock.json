@@ -185,7 +185,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.50"
+    "core_version": "0.3.53"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -193,7 +193,7 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:22cc39a4a4b2fb80696bcab303d4b51f9b8512fc8f75b0bb31cad70015f5fac7",
+    "digest": "sha256:e524d2e1623493daf60a1af5f99e1106fc063705cba354797cfca08456cee738",
     "manifest_digest": "sha256:d5708626d34580be367f586849b03cf3e9f0a553b969c249feb06feac361bd46",
     "name": "nemo-rl/maxrl",
     "template_digest": "sha256:6f92f42b4a5e42ab7a5949607f366c7f394de7e8791738f4a2a662093bb2be8e",

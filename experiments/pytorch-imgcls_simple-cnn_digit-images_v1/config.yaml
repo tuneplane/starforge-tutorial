@@ -1,6 +1,6 @@
-# PyTorch CNN 实验：训练**你自己上传的图片**，数据来自 Volume。
-# 与 pytorch-imgcls_simple-cnn_mnist_v1 是同一个方法、同一份 train.py，
-# 差别只在数据从哪来 —— 那个走平台数据集，这个走 Volume。两条链路都值得会。
+# PyTorch CNN 实验：训练**你自己上传的图片**（一张张 PNG，按类别分目录）。
+# 和 pytorch-imgcls_simple-cnn_mnist_v1 是同一个方法、同一份 train.py，差别只有数据形态：
+# 那个读 MNIST 原生的 idx 二进制，这个读 ImageFolder —— 也就是你把照片按类别分好目录的样子。
 #
 # ══════════════════════════════════════════════════════════════════════════
 #  调参速查 —— 硬件由 sf submit --profile 下发，不在这。单卡即可。
@@ -17,16 +17,11 @@ lr_scheduler: cosine
 amp: true
 
 # ───────────────────────────── ② 模型与数据 ──────────────────────────────
-# imagefolder 读 <data_dir>/{train,val}/<类名>/*，也就是你把照片按类别分好目录的样子。
-#
-# data_dir 里的 ${VOLUMES_DIR} 由平台展开：Volume 挂在哪个路径是平台定的，
-# 实验只说名字。这里**不要**硬编码路径 —— 换个后端、换台机器路径就变了。
-# 没声明 volume 时它会带着这个没设上的变量名直接失败，而不是读到空目录训出一个废模型。
-#
-# Volume 本身在提交时声明：sf submit … --volume <你的用户名>/digit-images
-# （在你自己的仓库里更推荐写进 data.volumes，见 README；教程仓库不能写死某个人的用户名）
+# imagefolder 读 <data_dir>/{train,val}/<类名>/*。
+# data_dir 从哪来？提交时 --train-dataset <你>/digit-images@v1，平台把该版本拉进共享缓存，
+# adapter 再以 --data-dir 传给 train.py —— 实验本身不需要知道路径。
+# （教程仓库不能写死某个人的用户名，否则这里应该写 data.train.dataset）
 input_pipeline: imagefolder
-data_dir: ${VOLUMES_DIR}/digit-images
 num_classes: 10
 arch: simple_cnn
 num_workers: 4
