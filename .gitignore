@@ -80,3 +80,6 @@ secrets.*
 .idea/
 .vscode/
 *.swp
+
+# prepare_digit_images.py 的下载缓存（原始 idx，不是数据集内容）
+datasets/.mnist-source/
