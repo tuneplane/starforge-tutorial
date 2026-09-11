@@ -19,8 +19,7 @@ hf_cache/
 hf_models/
 
 # 数据（只入库元数据与处理脚本，原始/大数据本地或对象存储）
-datasets/**/raw/
-datasets/**/data/
+datasets/
 data/raw/
 *.arrow
 *.parquet

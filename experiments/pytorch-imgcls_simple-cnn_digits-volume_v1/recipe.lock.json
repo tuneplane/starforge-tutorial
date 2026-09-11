@@ -1,0 +1,85 @@
+{
+  "apiVersion": "forge/recipe-lock/v4",
+  "bindings": {
+    "entrypoint": {
+      "kind": "experiment",
+      "value": "train.py"
+    },
+    "params": {
+      "amp": {
+        "path": "amp",
+        "type": "bool"
+      },
+      "arch": {
+        "path": "arch",
+        "type": "str"
+      },
+      "batch_size": {
+        "path": "batch_size",
+        "type": "int"
+      },
+      "epochs": {
+        "path": "epochs",
+        "type": "int"
+      },
+      "eval_interval_epochs": {
+        "path": "eval_interval_epochs",
+        "type": "int"
+      },
+      "input_pipeline": {
+        "path": "input_pipeline",
+        "type": "enum"
+      },
+      "learning_rate": {
+        "path": "learning_rate",
+        "type": "float"
+      },
+      "log_interval": {
+        "path": "log_interval",
+        "type": "int"
+      },
+      "lr_scheduler": {
+        "path": "lr_scheduler",
+        "type": "enum"
+      },
+      "num_classes": {
+        "path": "num_classes",
+        "type": "int"
+      },
+      "num_workers": {
+        "path": "num_workers",
+        "type": "int"
+      },
+      "optimizer": {
+        "path": "optimizer",
+        "type": "enum"
+      },
+      "seed": {
+        "path": "seed",
+        "type": "int"
+      },
+      "weight_decay": {
+        "path": "weight_decay",
+        "type": "float"
+      }
+    }
+  },
+  "created_by": {
+    "core_version": "0.3.52"
+  },
+  "framework": {
+    "kind": "pytorch",
+    "runtime_id": "pytorch-2.14.0",
+    "version": "2.14.0"
+  },
+  "recipe": {
+    "digest": "sha256:8332e32d1651a2c2913477dabfdb2568e8ac7bdad6bb25980975a240b6ac1e1b",
+    "manifest_digest": "sha256:4d064626a7faf1ecb3a1088533ec19fa0e6914e4addff2d206e5dfc8e54c9e22",
+    "name": "pytorch/image-classification",
+    "template_digest": "sha256:1eac2ae3783dea60a50fb577597f83ce5ce147c53df59e49e384953f9d31844a",
+    "version": "1.0.0"
+  },
+  "requires": {
+    "core": ">=0.1,<1"
+  }
+}

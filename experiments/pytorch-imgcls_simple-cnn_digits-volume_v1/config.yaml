@@ -1,0 +1,38 @@
+# PyTorch CNN 实验：训练**你自己上传的图片**，数据来自 Volume。
+# 与 pytorch-imgcls_simple-cnn_mnist_v1 是同一个方法、同一份 train.py，
+# 差别只在数据从哪来 —— 那个走平台数据集，这个走 Volume。两条链路都值得会。
+#
+# ══════════════════════════════════════════════════════════════════════════
+#  调参速查 —— 硬件由 sf submit --profile 下发，不在这。单卡即可。
+#  完整参数表：sf methods pytorch/image-classification
+# ══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────── ① 调参区（按需改）─────────────────────────────
+learning_rate: 1.0e-3
+epochs: 5
+batch_size: 64
+optimizer: adamw
+weight_decay: 0.0
+lr_scheduler: cosine
+amp: true
+
+# ───────────────────────────── ② 模型与数据 ──────────────────────────────
+# imagefolder 读 <data_dir>/{train,val}/<类名>/*，也就是你把照片按类别分好目录的样子。
+#
+# data_dir 里的 ${VOLUMES_DIR} 由平台展开：Volume 挂在哪个路径是平台定的，
+# 实验只说名字。这里**不要**硬编码路径 —— 换个后端、换台机器路径就变了。
+# 没声明 volume 时它会带着这个没设上的变量名直接失败，而不是读到空目录训出一个废模型。
+#
+# Volume 本身在提交时声明：sf submit … --volume <你的用户名>/digit-images
+# （在你自己的仓库里更推荐写进 data.volumes，见 README；教程仓库不能写死某个人的用户名）
+input_pipeline: imagefolder
+data_dir: ${VOLUMES_DIR}/digit-images
+num_classes: 10
+arch: simple_cnn
+num_workers: 4
+
+# ───────────────────────────── ③ 观测与保存 ──────────────────────────────
+# 2000 张 / batch 64 = 一个 epoch 才 32 步，log_interval 必须小，否则曲线只有几个点。
+log_interval: 5
+eval_interval_epochs: 1
+seed: 0
