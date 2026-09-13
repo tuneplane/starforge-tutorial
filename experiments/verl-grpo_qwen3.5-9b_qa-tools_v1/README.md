@@ -53,11 +53,11 @@ verl 要 parquet，而共享题库 `aiden_lu/qa-rl` 是 nemo-rl 口径的 jsonl�
 # 1. 数据（本地一次性）：jsonl 题库 → verl parquet，再推成平台数据集版本
 python experiments/verl-grpo_qwen3.5-9b_qa-tools_v1/prepare_data.py \
     --data-dir datasets/qa_rl --out-dir /tmp/qa_rl_verl
-sf dataset push aiden_lu/qa-rl-verl v1 /tmp/qa_rl_verl --public
+tuneplane dataset push aiden_lu/qa-rl-verl v1 /tmp/qa_rl_verl --public
 
 # 2. 校验 + 提交（模型须与 nemo-rl 对照侧一致，且模板要支持 tools —— 见坑 7）
-sf validate verl-grpo_qwen3.5-9b_qa-tools_v1
-sf submit verl-grpo_qwen3.5-9b_qa-tools_v1 --profile h200:1 \
+tuneplane validate verl-grpo_qwen3.5-9b_qa-tools_v1
+tuneplane submit verl-grpo_qwen3.5-9b_qa-tools_v1 --profile h200:1 \
     --model Qwen/Qwen3.5-9B-Base \
     --train-dataset aiden_lu/qa-rl-verl@v1 --train-data train.parquet \
     --validation-dataset aiden_lu/qa-rl-verl@v1 --validation-data val.parquet \
@@ -90,7 +90,7 @@ sf submit verl-grpo_qwen3.5-9b_qa-tools_v1 --profile h200:1 \
    verl 路线只能用 `--train-dataset` / `--validation-dataset` 提交时绑定。
    （nemo-rl 路线写在 config 里是对的，那边整份 YAML 就是训练配置——两条路线在这点上相反。）
 2. **数据集里没有 parquet** → verl `RLHFDataset` 读 parquet，`--train-data train.parquet`
-   指向不存在的文件会在建数据集时失败。`sf dataset ls` 只列名字，用
+   指向不存在的文件会在建数据集时失败。`tuneplane dataset ls` 只列名字，用
    `GET /api/datasets/<owner>/<name>` 看文件清单。
 3. **`trainer.logger: [console]` 不用改**：平台 patch 了 `verl.utils.tracking.Tracking.log`
    取指标，console 就够，不需要也不该配 wandb/swanlab。
@@ -137,8 +137,8 @@ curl -s https://huggingface.co/<repo>/raw/main/tokenizer_config.json \
 12. **锁的框架版本必须是平台 catalog 支持的那个**（本实验锁 0.9.0）。0.9 移除了
     `main_ppo_sync`、统一入口 `main_ppo`（V1 trainer 默认、`trainer.v1.trainer_mode` 默认
     sync），入口由 recipe 的版本矩阵按 `framework.version` 自动选，不需要动 config。
-    平台 catalog 升级后 recipe 摘要会变，`sf recipe status` 报 `recipe_stale` 时
-    跑 `sf recipe upgrade` 刷新，否则提交会被完整性闸拒绝。
+    平台 catalog 升级后 recipe 摘要会变，`tuneplane recipe status` 报 `recipe_stale` 时
+    跑 `tuneplane recipe upgrade` 刷新，否则提交会被完整性闸拒绝。
 
 ### 单卡（本实验 1×H200）专属
 
@@ -171,4 +171,4 @@ curl -s https://huggingface.co/<repo>/raw/main/tokenizer_config.json \
     没有调用后来才加的 `migrate_legacy_reward_impl`，旧键不会被搬过去。
     表现：训练前验证打出 `Reward function is not implemented for data_source='qa_rl'`，
     随后 `_validate` 再报 `Received an empty list as keys`（验证轨迹全部打分失败，
-    TransferQueue 里没有 key）。顶层旧键留给平台 `sf validate`；两套必须同文件。
+    TransferQueue 里没有 key）。顶层旧键留给平台 `tuneplane validate`；两套必须同文件。

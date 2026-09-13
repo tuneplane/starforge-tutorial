@@ -251,9 +251,9 @@ def test_run_tool_does_not_inherit_the_host_environment(tmp_path, monkeypatch):
     """会执行模型生成的代码：作业容器里平台注入的端点与凭据不该出现在它面前。"""
     import sys
 
-    monkeypatch.setenv("FORGE_INGEST_TOKEN", "leak-me")
+    monkeypatch.setenv("TUNEPLANE_INGEST_TOKEN", "leak-me")
     script = tmp_path / "probe.py"
-    script.write_text("import os;print(os.environ.get('FORGE_INGEST_TOKEN',''))", encoding="utf-8")
+    script.write_text("import os;print(os.environ.get('TUNEPLANE_INGEST_TOKEN',''))", encoding="utf-8")
     run = run_tool([sys.executable, str(script)], tmp_path, 30)
     assert run.code == 0
     assert "leak-me" not in run.output

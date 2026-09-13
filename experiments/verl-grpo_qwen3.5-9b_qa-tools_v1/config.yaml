@@ -149,7 +149,7 @@ actor_rollout_ref:
 # 只看 \boxed{} 答案是否命中 ground_truth（与 nemo-rl 对照实验同口径）。
 #
 # ⚠️ 必须两套键都写、且指向同一文件（见 README 坑 18）：
-#    - 顶层 custom_reward_function：文档旧键；平台 sf validate 认这个路径。
+#    - 顶层 custom_reward_function：文档旧键；平台 tuneplane validate 认这个路径。
 #    - reward.custom_reward_function：verl 0.9 V1 RewardLoop 实际读取的键。
 #    只写顶层时 hydra 看起来传进去了，V1 仍走内置 default_compute_score，
 #    碰到 data_source=qa_rl 抛 NotImplementedError，验证集打分全失败，

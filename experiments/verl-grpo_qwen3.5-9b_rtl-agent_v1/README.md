@@ -51,7 +51,7 @@ GRPO 优势全为 0 → **训练照跑但什么都学不到**（与 qa-tools 坑
 | | 口径 | 要什么 |
 | --- | --- | --- |
 | 训练奖励（本实验） | 三段 + 部分分 + 扣综合问题 | **坡度** |
-| 平台评测（`sf bench run --suites verilogeval-v2`） | 上游 harness 自带的 testbench 与 pass@k | **可比** |
+| 平台评测（`tuneplane bench run --suites verilogeval-v2`） | 上游 harness 自带的 testbench 与 pass@k | **可比** |
 
 报告效果时以评测侧为准。训练奖励涨了而评测不涨，通常说明奖励被钻了空子，先看
 `Breakdown.to_dict()` 卡在哪一段。
@@ -70,7 +70,7 @@ GRPO 优势全为 0 → **训练照跑但什么都学不到**（与 qa-tools 坑
 整轮训练在比声明更小的尺度上跑，而那件事从 reward 曲线上看不出来。** 真要少跑一段，
 把对应权重显式设成 0。
 
-自建镜像（`sf` 的自定义镜像流程见平台文档「自定义镜像」）：
+自建镜像（`tuneplane` 的自定义镜像流程见平台文档「自定义镜像」）：
 
 ```dockerfile
 FROM <verl-0.9.0 基础镜像>
@@ -96,11 +96,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 1. 数据（本地一次性）：jsonl 题库 → verl parquet，再推成平台数据集版本
 python experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1/prepare_data.py \
     --data-dir datasets/rtl_rl --out-dir /tmp/rtl_parquet
-sf dataset push <owner>/rtl-rl /tmp/rtl_parquet
+tuneplane dataset push <owner>/rtl-rl /tmp/rtl_parquet
 
 # 2. 校验 + 提交
-sf validate experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1
-sf submit experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1 \
+tuneplane validate experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1
+tuneplane submit experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1 \
     --model Qwen/Qwen3.5-9B-Base \
     --train-dataset <owner>/rtl-rl@v1 --train-data train.parquet \
     --validation-dataset <owner>/rtl-rl@v1 --validation-data val.parquet \
@@ -110,7 +110,7 @@ sf submit experiments/verl-grpo_qwen3.5-9b_rtl-agent_v1 \
 ### 题库从哪来
 
 **不要把 VerilogEval / RTLLM 的题目复制进来当训练集** —— 它们是评测集，训练用了就是
-泄题，之后 `sf bench` 的分数不再说明任何事情（平台的数据集互查会把这类重叠标出来）。
+泄题，之后 `tuneplane bench` 的分数不再说明任何事情（平台的数据集互查会把这类重叠标出来）。
 自建题库，或用它们的**训练划分**；评测留给 harness。
 
 每行 jsonl：

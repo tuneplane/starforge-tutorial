@@ -1,21 +1,21 @@
-# starforge-tutorial
+# tuneplane-examples
 
-Official example project for [StarForge](https://github.com/wccdev/starforge). Same layout as `sf init`: experiments, configs, shared code. This is not the CLI source.
+Official example project for [TunePlane](https://github.com/tuneplane/tuneplane). Same layout as `tuneplane init`: experiments, configs, shared code. This is not the CLI source.
 
 ```bash
-pip install starforge-core
-sf login --server https://<your console>
-sf ls
-sf validate grpo_qwen3.5-4b_gsm8k_v1
+pip install tuneplane
+tuneplane login --server https://<your console>
+tuneplane ls
+tuneplane validate grpo_qwen3.5-4b_gsm8k_v1
 ```
 
 Day-to-day work belongs in your own repo:
 
 ```bash
-sf init my-lab --yes
+tuneplane init my-lab --yes
 ```
 
-`starforge-core` is the client (`sf`). The control plane is a separate package, `starforge-server`.
+`tuneplane` is the client (`tuneplane`). The control plane is a separate package, `tuneplane-server`.
 
 ## Experiments
 
@@ -39,7 +39,7 @@ sf init my-lab --yes
 ## Layout
 
 ```
-starforge.yaml      repo marker + project name
+tuneplane.yaml      repo marker + project name
 experiments/        one directory per submitable job
 configs/            NeMo-RL bases + model fragments
 common/             shared code uploaded with the job
@@ -52,7 +52,7 @@ smoke/              minimal verl SFT / GRPO
 New experiment:
 
 ```bash
-sf new my-grpo --method nemo-rl/grpo
+tuneplane new my-grpo --method nemo-rl/grpo
 ```
 
 Hardware is `--profile` at submit time, not a `cluster/` tree in this repo.

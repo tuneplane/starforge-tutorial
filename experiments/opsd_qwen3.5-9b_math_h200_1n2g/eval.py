@@ -2,7 +2,7 @@
 # OPSD 训练后离线评测：按论文协议在 AIME24 / AIME25 / HMMT25 上给 checkpoint 打分。
 #
 # 由 OPSD recipe 的 eval 生命周期动作通过统一 launcher 调起：
-#     sf eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <训练 run_id>
+#     tuneplane eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <训练 run_id>
 #
 # 与训练中的 in-loop validation 的分工：
 #   in-loop  只跑 AIME24、每题 12 条、受训练 max_seq 约束 —— 用来在训练途中看趋势
@@ -47,7 +47,7 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--seed", type=int, default=42)
     p.add_argument(
-        "--tp", type=int, default=int(os.environ.get("FORGE_CLUSTER_GPUS_PER_NODE") or 1),
+        "--tp", type=int, default=int(os.environ.get("TUNEPLANE_CLUSTER_GPUS_PER_NODE") or 1),
         help="vLLM tensor_parallel_size（默认取服务端下发的每节点卡数）",
     )
     p.add_argument("--gpu-mem-util", type=float, default=0.85)
@@ -65,13 +65,13 @@ def main() -> int:
             raise SystemExit(
                 f"这些评测集不在 {args.data_dir}：{', '.join(missing)}；"
                 f"可用的有：{', '.join(files) or '（无）'}。"
-                "请先在能出网的机器上 `sf dataset prepare opsd_math` 再 rsync 过来。"
+                "请先在能出网的机器上 `tuneplane dataset prepare opsd_math` 再 rsync 过来。"
             )
         files = {k: files[k] for k in want}
     if not files:
         raise SystemExit(
             f"{args.data_dir} 下没有 eval_*.jsonl。"
-            "请先 `sf dataset prepare opsd_math` 生成，再 rsync 到集群。"
+            "请先 `tuneplane dataset prepare opsd_math` 生成，再 rsync 到集群。"
         )
 
     spec = EvalSpec(
@@ -89,8 +89,8 @@ def main() -> int:
         f"top_k={spec.top_k} max_tokens={spec.max_tokens} tp={args.tp}"
     )
 
-    # 上报到 console：跑不通也不该让评测失败（本地直跑时本就没有 STARFORGE_* 凭据）。
-    from starforge.report import finish, init, log
+    # 上报到 console：跑不通也不该让评测失败（本地直跑时本就没有 TUNEPLANE_JOB_* 凭据）。
+    from tuneplane.report import finish, init, log
 
     init(
         hparams={

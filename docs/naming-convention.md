@@ -21,7 +21,7 @@ Dataset short name: `gsm8k`, `alpaca`, `qa-rl`. Mix with `+` (`gsm8k+math`).
 
 Tag: `v1`, a date, or a knob (`lr2e6`, `8k-ctx`).
 
-Everything submitable lives under `experiments/`. The project name is `starforge.yaml` `name`, not the experiment directory.
+Everything submitable lives under `experiments/`. The project name is `tuneplane.yaml` `name`, not the experiment directory.
 
 Optional SwanLab: project = experiment dir (or model), run name = knobs (`lr1e6-bs64-kl0.001`). Put the URL in the experiment README. See `docs/swanlab.md`.
 

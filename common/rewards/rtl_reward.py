@@ -29,7 +29,7 @@ Verilog 有 `$system`，跑一个模型写的 testbench 等价于跑一段模型
 
 与评测侧的关系
 ──────────────────────────────────────────────────────────────────────────────
-平台评测走的是 VerilogEval / RTLLM 自带的 harness（`sf bench run --suites
+平台评测走的是 VerilogEval / RTLLM 自带的 harness（`tuneplane bench run --suites
 verilogeval-v2`），判据是它们自己的 testbench 与 pass@k。这里是**训练期的塑形奖励**，
 口径刻意更细（部分分 + 综合段）—— 两者不是同一个数，也不该是：训练要坡度，
 评测要可比。报告最终效果时以评测侧为准。

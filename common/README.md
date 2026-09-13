@@ -15,7 +15,7 @@ Code that ships with the job package. Put *your* data scripts, environments, rew
 Curves:
 
 ```python
-from starforge.report import init, log, finish
+from tuneplane.report import init, log, finish
 ```
 
-Catalog methods (NeMo-RL / verl / TRL / OpenRLHF) already wire the framework logger. Custom jobs with `observability: platform` get `starforge` on `PYTHONPATH`.
+Catalog methods (NeMo-RL / verl / TRL / OpenRLHF) already wire the framework logger. Custom jobs with `observability: platform` get `tuneplane` on `PYTHONPATH`.

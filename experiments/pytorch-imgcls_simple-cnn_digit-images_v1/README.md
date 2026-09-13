@@ -6,11 +6,11 @@
 ## 跑起来
 
 ```bash
-sf dataset prepare digit_images                        # 生成 2500 张 PNG（纯标准库，几秒）
-sf dataset push digit-images v1 datasets/digit-images  # 推成平台数据集
-sf submit pytorch-imgcls_simple-cnn_digit-images_v1 \
+tuneplane dataset prepare digit_images                        # 生成 2500 张 PNG（纯标准库，几秒）
+tuneplane dataset push digit-images v1 datasets/digit-images  # 推成平台数据集
+tuneplane submit pytorch-imgcls_simple-cnn_digit-images_v1 \
   --profile <卡型>:1 --train-dataset <你的用户名>/digit-images@v1
-sf job logs <job id>
+tuneplane job logs <job id>
 ```
 
 实测 H200 单卡 5 个 epoch，`best_top1=0.9280`，约一分钟。
@@ -39,6 +39,6 @@ val/<类名>/*.png
 
 - `batch_size` 是**每进程**的：多卡时全局 batch = 该值 × 卡数
 - 多机会编译成真正的 torchrun 进程组（有 rendezvous，不是各节点各训各的）
-- 这个方法没有 `sf export` / `sf eval` —— 分类器没有有意义的 HF 导出，平台也没有给它打分的基准
+- 这个方法没有 `tuneplane export` / `tuneplane eval` —— 分类器没有有意义的 HF 导出，平台也没有给它打分的基准
 - 数据该放数据集还是 Volume：见 [docs/datasets-vs-volumes.md](../../docs/datasets-vs-volumes.md)
-- 全部可调参数：`sf methods pytorch/image-classification`
+- 全部可调参数：`tuneplane methods pytorch/image-classification`

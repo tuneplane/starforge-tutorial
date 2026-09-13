@@ -136,9 +136,9 @@ GRPO 的优势是**同一道题的 n 条 rollout 之间**算的。所以:
 
 ## 7. 划分与防泄题
 
-- **不要把 VerilogEval / RTLLM / CVDP 的题放进训练集。** 训了之后 `sf bench` 的分数就不再说明任何事情。平台的数据集互查会把这类重叠标出来。
+- **不要把 VerilogEval / RTLLM / CVDP 的题放进训练集。** 训了之后 `tuneplane bench` 的分数就不再说明任何事情。平台的数据集互查会把这类重叠标出来。
 - 验证集和训练集**按模块划分**,不要按行随机切——同一个 FIFO 的两个变体分到两边就是泄题。
-- 用平台的版本化数据集:`sf dataset push <owner>/rtl-rl <目录>`,提交时用 `--train-dataset <owner>/rtl-rl@v1` 引用。
+- 用平台的版本化数据集:`tuneplane dataset push <owner>/rtl-rl <目录>`,提交时用 `--train-dataset <owner>/rtl-rl@v1` 引用。
 
 ---
 
@@ -230,4 +230,4 @@ NeMo-RL `ResponseDataset` 吃 `{"input", "output"}`:
 1. **先收 30~50 道**,把 testbench 按第 2 节改造好,跑 `check_data.py` 跑通全绿。这一步会暴露你们 testbench 写法上的系统性问题,早发现比收了 500 道再返工便宜得多。
 2. 用基座模型跑一次,看 syntax 段通过率——决定要不要先 SFT。
 3. 扩到 200~500 道,做第 5 节的难度筛选。
-4. GRPO 训练,用 `sf bench run --suites verilogeval-v2` 做**独立**的效果评估(训练奖励涨不代表评测涨)。
+4. GRPO 训练,用 `tuneplane bench run --suites verilogeval-v2` 做**独立**的效果评估(训练奖励涨不代表评测涨)。

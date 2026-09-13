@@ -8,8 +8,8 @@
 只用标准库：下载、校验、解 idx、编码 PNG 全在这个文件里。本仓 `dependencies = []`
 是刻意的，为几 MB 数据在笔记本上装 2GB 依赖不合算。
 
-    sf dataset prepare digit_images
-    sf dataset push digit-images v1 datasets/digit-images
+    tuneplane dataset prepare digit_images
+    tuneplane dataset push digit-images v1 datasets/digit-images
 """
 import gzip
 import hashlib
@@ -114,7 +114,7 @@ def main(
     val_per_class: int = typer.Option(50, "--val-per-class", help="每类多少张验证图"),
 ) -> None:
     """下载 MNIST 并导出成 ImageFolder 布局的 PNG。重复执行是安全的。"""
-    # 原始 idx 放在输出目录**之外**：`sf dataset push <目录>` 会上传目录下的每个文件，
+    # 原始 idx 放在输出目录**之外**：`tuneplane dataset push <目录>` 会上传目录下的每个文件，
     # 放里面就等于把 63MB 的原始二进制混进图片数据集。
     cache = os.path.join(REPO_ROOT, "datasets", ".mnist-source")
     _fetch(cache)
@@ -123,7 +123,7 @@ def main(
 
     print(f"\n写入 {n_train} 张训练图 + {n_val} 张验证图 -> {out}")
     print("\n下一步：")
-    print(f"  sf dataset push digit-images v1 {os.path.relpath(out, REPO_ROOT)}")
+    print(f"  tuneplane dataset push digit-images v1 {os.path.relpath(out, REPO_ROOT)}")
 
 
 if __name__ == "__main__":

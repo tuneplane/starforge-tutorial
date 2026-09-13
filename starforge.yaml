@@ -1,7 +1,0 @@
-# Marker for `sf`: walk up until this file exists.
-# `name` is the project; the console groups runs as @<user>/<name>.
-# This repo is the official example (starforge-tutorial), not the CLI.
-# For daily work: pip install starforge-core && sf init <your-repo>
-apiVersion: forge/project/v1
-name: starforge-tutorial
-created_by: starforge 0.3.0

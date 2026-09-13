@@ -17,7 +17,7 @@
 | `max_total_sequence_length` | 上下文长度 | 数学 1024 够用；大=更吃显存 |
 | `max_num_steps` / `val_period` | 训多久 / 多久验证 | 看收敛情况调 |
 
-> 硬件/分布式（卡数、并行度、NCCL）不在这里调，由服务端 profile 注册表下发（FORGE_PROFILE_OVERRIDES）。
+> 硬件/分布式（卡数、并行度、NCCL）不在这里调，由服务端 profile 注册表下发（TUNEPLANE_PROFILE_OVERRIDES）。
 > 奖励逻辑在 `env.math`（数学判分用 NeMo-RL 内置 `math_verify`），自定义奖励才动 `common/rewards/`。
 
 | 项 | 4B（本实验） |
@@ -32,7 +32,7 @@
 ## 数据准备
 
 ```bash
-sf dataset prepare gsm8k                   # 写到 datasets/gsm8k/{train,val}.jsonl
+tuneplane dataset prepare gsm8k                   # 写到 datasets/gsm8k/{train,val}.jsonl
 ```
 
 数据随作业上传，统一 launcher 会校验并准备 dataset manifest，提交时无需手动 export。
@@ -45,8 +45,8 @@ sf dataset prepare gsm8k                   # 写到 datasets/gsm8k/{train,val}.j
 ## 运行
 
 ```bash
-sf submit grpo_qwen3.5-4b_gsm8k_v1
-sf job logs                       # 省略 ID 则跟最近一个作业
+tuneplane submit grpo_qwen3.5-4b_gsm8k_v1
+tuneplane job logs                       # 省略 ID 则跟最近一个作业
 ```
 
 ## SwanLab

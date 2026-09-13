@@ -1,6 +1,6 @@
 # 大模型微调考试操作手册
 
-> 面向 StarForge 微调平台（格科内网）的实操考试指南。拿到本文档 + HR 发放的账号后，按顺序完成即可。
+> 面向 TunePlane 微调平台（格科内网）的实操考试指南。拿到本文档 + HR 发放的账号后，按顺序完成即可。
 
 ---
 
@@ -31,7 +31,7 @@
 | 账号 | 用途 |
 | --- | --- |
 | **VPN 账号** | 连接格科内网 |
-| **StarForge 控制台账号** | Web 控制台 + CLI 提交作业 |
+| **TunePlane 控制台账号** | Web 控制台 + CLI 提交作业 |
 
 ### 2.2 VPN（深信服 EasyConnect）
 
@@ -49,11 +49,11 @@
 
 其他办公地点请向 HR 确认 VPN 地址。
 
-连上 VPN 后，浏览器能打开 [https://starforge.gcoreinc.com/](https://starforge.gcoreinc.com/) 即表示网络正常。
+连上 VPN 后，浏览器能打开 [https://tuneplane.gcoreinc.com/](https://tuneplane.gcoreinc.com/) 即表示网络正常。
 
 ### 2.3 Web 控制台
 
-访问 [https://starforge.gcoreinc.com/](https://starforge.gcoreinc.com/)，用 HR 账号登录。主要用 **作业** 页查看训练曲线、验证样本与日志。
+访问 [https://tuneplane.gcoreinc.com/](https://tuneplane.gcoreinc.com/)，用 HR 账号登录。主要用 **作业** 页查看训练曲线、验证样本与日志。
 
 ---
 
@@ -64,7 +64,7 @@
 在 GitHub 上 **Fork** 官方示例仓库到你自己的账号：
 
 ```
-https://github.com/wccdev/starforge-tutorial
+https://github.com/tuneplane/tuneplane-examples
 ```
 
 Fork 后你在自己的仓库里创建实验、改代码、提交 commit。**考试期间的所有改动都在你的 Fork 里完成**，不要直接在官方仓库改。
@@ -72,9 +72,9 @@ Fork 后你在自己的仓库里创建实验、改代码、提交 commit。**考
 ### 3.2 克隆你的 Fork 并安装 CLI
 
 ```bash
-pip install starforge-core
-git clone https://github.com/<你的GitHub用户名>/starforge-tutorial.git
-cd starforge-tutorial
+pip install tuneplane
+git clone https://github.com/<你的GitHub用户名>/tuneplane-examples.git
+cd tuneplane-examples
 ```
 
 本机只是提交客户端，**不需要 GPU**。NeMo-RL / CUDA 等在远程集群容器内。
@@ -88,14 +88,14 @@ sf ...
 **确保 VPN 已连接**：
 
 ```bash
-sf login --server https://starforge.gcoreinc.com
+tuneplane login --server https://tuneplane.gcoreinc.com
 ```
 
-SSH / 无浏览器：`sf login --device-flow`
+SSH / 无浏览器：`tuneplane login --device-flow`
 
 ```bash
-sf status    # 确认已登录、服务可达、配额
-sf status    # 查看 GPU 配额与活跃作业
+tuneplane status    # 确认已登录、服务可达、配额
+tuneplane status    # 查看 GPU 配额与活跃作业
 ```
 
 ---
@@ -136,8 +136,8 @@ sf status    # 查看 GPU 配额与活跃作业
 ### 4.4 创建你的实验
 
 ```bash
-sf ls
-sf new grpo_qwen3.5-9b_qa-rl-agent_<你的名字> --from agent-grpo_qwen3.5-9b_sliding-puzzle_v1
+tuneplane ls
+tuneplane new grpo_qwen3.5-9b_qa-rl-agent_<你的名字> --from agent-grpo_qwen3.5-9b_sliding-puzzle_v1
 ```
 
 在你的 Fork 里完成实验代码后，**push 到 GitHub**：
@@ -157,27 +157,27 @@ git push origin main
 ### 5.1 提交
 
 ```bash
-sf validate <你的实验名>    # 提交前校验 config
-sf submit <你的实验名>
+tuneplane validate <你的实验名>    # 提交前校验 config
+tuneplane submit <你的实验名>
 ```
 
 成功后会打印 **作业 ID**（如 `raysubmit_xxx`）。
 
 ```bash
-sf job logs [job_id]   # 查看日志
-sf job ls              # 作业列表
-sf job stop <job_id>   # 停止作业、释放 GPU
+tuneplane job logs [job_id]   # 查看日志
+tuneplane job ls              # 作业列表
+tuneplane job stop <job_id>   # 停止作业、释放 GPU
 ```
 
 ### 5.2 控制台监控
 
-[https://starforge.gcoreinc.com/](https://starforge.gcoreinc.com/) → **作业** → 点击你的作业：
+[https://tuneplane.gcoreinc.com/](https://tuneplane.gcoreinc.com/) → **作业** → 点击你的作业：
 
 - **图表**：关注 **validation/accuracy**（主要评分指标）
 - **验证样本**：查看模型检索与作答轨迹
 - **日志 / 系统 / 诊断**：排查失败与 OOM
 
-48 小时内可多次 submit 调参；及时 `sf job stop` 释放不用的作业。
+48 小时内可多次 submit 调参；及时 `tuneplane job stop` 释放不用的作业。
 
 ---
 
@@ -194,7 +194,7 @@ sf job stop <job_id>   # 停止作业、释放 GPU
 
 | 提交项 | 说明 |
 | --- | --- |
-| **GitHub Fork 地址** | 你的 `starforge` Fork 仓库 URL（含实验代码） |
+| **GitHub Fork 地址** | 你的 `tuneplane` Fork 仓库 URL（含实验代码） |
 | **作业 ID** | 最佳 run 对应的 Ray 作业 ID |
 | **截图** | 控制台 validation/accuracy 曲线或最终数值 |
 | **简要说明** | 实验思路、关键改动、最佳 accuracy 等（HR 指定格式为准） |
@@ -205,23 +205,23 @@ sf job stop <job_id>   # 停止作业、释放 GPU
 
 | 问题 | 处理 |
 | --- | --- |
-| 打不开 starforge | 确认 VPN；切换张江双链路 |
-| `sf login` 无浏览器 | `sf login --device-flow` |
-| 配额不足 | `sf status`；`sf job stop` 释放卡 |
-| 作业 FAILED | 控制台看日志 / 诊断；`sf job logs <id> -n 0` |
+| 打不开 tuneplane | 确认 VPN；切换张江双链路 |
+| `tuneplane login` 无浏览器 | `tuneplane login --device-flow` |
+| 配额不足 | `tuneplane status`；`tuneplane job stop` 释放卡 |
+| 作业 FAILED | 控制台看日志 / 诊断；`tuneplane job logs <id> -n 0` |
 | validate 失败 | 按终端报错改 config |
 
 ---
 
 ## 八、操作流程 Checklist
 
-- [ ] GitHub Fork `wccdev/starforge-tutorial`
-- [ ] 克隆自己的 Fork，`pip install starforge-core-core`
-- [ ] 连 VPN，登录 [starforge.gcoreinc.com](https://starforge.gcoreinc.com/)
-- [ ] `sf login` + `sf status`
+- [ ] GitHub Fork `tuneplane/tuneplane-examples`
+- [ ] 克隆自己的 Fork，`pip install tuneplane-core`
+- [ ] 连 VPN，登录 [tuneplane.gcoreinc.com](https://tuneplane.gcoreinc.com/)
+- [ ] `tuneplane login` + `tuneplane status`
 - [ ] 研究两个示例实验，创建并实现自己的 QA 多轮检索实验
 - [ ] 代码 push 到 GitHub Fork
-- [ ] `sf validate` → `sf submit`
+- [ ] `tuneplane validate` → `tuneplane submit`
 - [ ] 监控曲线，迭代调参
 - [ ] 向 HR 提交：Fork 地址 + 作业 ID + 截图 + 简要说明
 
@@ -230,15 +230,15 @@ sf job stop <job_id>   # 停止作业、释放 GPU
 ## 附录：常用命令
 
 ```bash
-pip install starforge-core
-sf login --server https://starforge.gcoreinc.com
-sf status
-sf ls
-sf new <实验名> --from agent-grpo_qwen3.5-9b_sliding-puzzle_v1
-sf validate <实验名>
-sf submit <实验名>
-sf job logs [job_id]
-sf job stop <job_id>
+pip install tuneplane
+tuneplane login --server https://tuneplane.gcoreinc.com
+tuneplane status
+tuneplane ls
+tuneplane new <实验名> --from agent-grpo_qwen3.5-9b_sliding-puzzle_v1
+tuneplane validate <实验名>
+tuneplane submit <实验名>
+tuneplane job logs [job_id]
+tuneplane job stop <job_id>
 ```
 
 ---

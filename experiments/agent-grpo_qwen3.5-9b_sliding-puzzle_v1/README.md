@@ -13,7 +13,7 @@
 
 ## 目标集群
 
-`sf submit` 用 `--profile h100`（单机 1×H100 80GB）。换卡通常要重调显存类超参。本仓库没有 `cluster/` 目录。
+`tuneplane submit` 用 `--profile h100`（单机 1×H100 80GB）。换卡通常要重调显存类超参。本仓库没有 `cluster/` 目录。
 
 ## 组成
 
@@ -46,8 +46,8 @@
 ## 运行
 
 ```bash
-sf submit agent-grpo_qwen3.5-9b_sliding-puzzle_v1
-sf job logs                    # 省略 ID 则跟最近一个
+tuneplane submit agent-grpo_qwen3.5-9b_sliding-puzzle_v1
+tuneplane job logs                    # 省略 ID 则跟最近一个
 ```
 
 镜像需带 NeMo-RL 0.7.0；`Qwen/Qwen3.5-9B-Base` 应已在 `HF_HOME`，或集群能拉 HuggingFace。

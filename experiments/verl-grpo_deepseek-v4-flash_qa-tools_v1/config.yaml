@@ -164,7 +164,7 @@ actor_rollout_ref:
     agent:
       default_agent_loop: tool_agent
 
-# 两套键必须同文件：顶层给 sf validate，reward.* 才是 verl 0.9 V1 实际读的。
+# 两套键必须同文件：顶层给 tuneplane validate，reward.* 才是 verl 0.9 V1 实际读的。
 custom_reward_function:
   path: experiments/verl-grpo_deepseek-v4-flash_qa-tools_v1/reward.py
   name: compute_score

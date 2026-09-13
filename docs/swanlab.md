@@ -1,6 +1,6 @@
 # SwanLab (optional)
 
-Console curves come from the platform runner / `starforge.report`. Enable SwanLab only if you also want its cloud.
+Console curves come from the platform runner / `tuneplane.report`. Enable SwanLab only if you also want its cloud.
 
 ```bash
 pip install swanlab

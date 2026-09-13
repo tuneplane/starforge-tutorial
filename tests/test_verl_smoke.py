@@ -2,19 +2,19 @@
 from pathlib import Path
 
 import pytest
-from starforge.frameworks import CompileRequest, compile_launch_plan
-from starforge.recipes import get_recipe
+from tuneplane.frameworks import CompileRequest, compile_launch_plan
+from tuneplane.recipes import get_recipe
 
-from starforge.cli.recipe_lock import validate_recipe_lock
-from starforge.cli.spec_builder import build_spec
+from tuneplane.cli.recipe_lock import validate_recipe_lock
+from tuneplane.cli.spec_builder import build_spec
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 # qa-tools 实验的基座：必须与 nemo-rl 对照侧 grpo_qwen3.5-9b_qa-rl-agent_v3 同一个
 # （A/B 契约），且其 chat template 需支持 tools —— 该 Base 模型自带的模板支持。
 QA_TOOLS_MODEL = "Qwen/Qwen3.5-9B-Base"
-TRAIN = "/data/starforge/smoke/gsm8k/train.parquet"
-VALIDATION = "/data/starforge/smoke/gsm8k/test.parquet"
+TRAIN = "/data/tuneplane/smoke/gsm8k/train.parquet"
+VALIDATION = "/data/tuneplane/smoke/gsm8k/test.parquet"
 
 
 @pytest.mark.parametrize(
@@ -42,9 +42,9 @@ def test_verl_smoke_contract_is_exact_and_compiles(name, exp_dir, pool, gpus, sc
         recipe=recipe,
         work_dir=ROOT,
         env={
-            "STARFORGE_ENABLED": "0",
-            "FORGE_CLUSTER_NUM_NODES": "1",
-            "FORGE_CLUSTER_GPUS_PER_NODE": str(gpus),
+            "TUNEPLANE_JOB_ENABLED": "0",
+            "TUNEPLANE_CLUSTER_NUM_NODES": "1",
+            "TUNEPLANE_CLUSTER_GPUS_PER_NODE": str(gpus),
         },
     ))
 
@@ -78,7 +78,7 @@ def test_qa_tools_config_compiles_to_legal_hydra_overrides():
     """
     exp_rel = "experiments/verl-grpo_qwen3.5-9b_qa-tools_v1"
     dataset = "aiden_lu/qa-rl-verl@v1"
-    data_dir = "/data/starforge/datasets/aiden_lu/qa-rl-verl/v1"
+    data_dir = "/data/tuneplane/datasets/aiden_lu/qa-rl-verl/v1"
     spec = build_spec(
         exp_rel,
         recipe="verl/grpo",
@@ -96,9 +96,9 @@ def test_qa_tools_config_compiles_to_legal_hydra_overrides():
         recipe=get_recipe("verl/grpo"),
         work_dir=ROOT,
         env={
-            "STARFORGE_ENABLED": "0",
-            "FORGE_CLUSTER_NUM_NODES": "1",
-            "FORGE_CLUSTER_GPUS_PER_NODE": "1",
+            "TUNEPLANE_JOB_ENABLED": "0",
+            "TUNEPLANE_CLUSTER_NUM_NODES": "1",
+            "TUNEPLANE_CLUSTER_GPUS_PER_NODE": "1",
             "QA_RL_VERL_DATA_DIR": data_dir,
         },
     ))
@@ -140,10 +140,10 @@ def test_qa_tools_lora_lands_on_the_key_fsdp_actually_reads():
         recipe=get_recipe("verl/grpo"),
         work_dir=ROOT,
         env={
-            "STARFORGE_ENABLED": "0",
-            "FORGE_CLUSTER_NUM_NODES": "1",
-            "FORGE_CLUSTER_GPUS_PER_NODE": "1",
-            "QA_RL_VERL_DATA_DIR": "/data/starforge/datasets/aiden_lu/qa-rl-verl/v1",
+            "TUNEPLANE_JOB_ENABLED": "0",
+            "TUNEPLANE_CLUSTER_NUM_NODES": "1",
+            "TUNEPLANE_CLUSTER_GPUS_PER_NODE": "1",
+            "QA_RL_VERL_DATA_DIR": "/data/tuneplane/datasets/aiden_lu/qa-rl-verl/v1",
         },
     ))
     overrides = _hydra_overrides(plan.argv)
@@ -184,10 +184,10 @@ def test_qa_tools_reward_lands_on_the_key_v1_actually_reads():
         recipe=get_recipe("verl/grpo"),
         work_dir=ROOT,
         env={
-            "STARFORGE_ENABLED": "0",
-            "FORGE_CLUSTER_NUM_NODES": "1",
-            "FORGE_CLUSTER_GPUS_PER_NODE": "1",
-            "QA_RL_VERL_DATA_DIR": "/data/starforge/datasets/aiden_lu/qa-rl-verl/v1",
+            "TUNEPLANE_JOB_ENABLED": "0",
+            "TUNEPLANE_CLUSTER_NUM_NODES": "1",
+            "TUNEPLANE_CLUSTER_GPUS_PER_NODE": "1",
+            "QA_RL_VERL_DATA_DIR": "/data/tuneplane/datasets/aiden_lu/qa-rl-verl/v1",
         },
     ))
     overrides = _hydra_overrides(plan.argv)

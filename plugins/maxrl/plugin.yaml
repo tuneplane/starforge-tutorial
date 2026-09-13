@@ -1,4 +1,4 @@
-schema: forge/plugin/v1
+schema: tuneplane/plugin/v1
 name: maxrl
 version: 0.1.0
 kind: algorithm

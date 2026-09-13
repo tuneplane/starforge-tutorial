@@ -1,5 +1,5 @@
 {
-  "apiVersion": "forge/recipe-lock/v4",
+  "apiVersion": "tuneplane/recipe-lock/v1",
   "bindings": {
     "entrypoint": {
       "kind": "module",
@@ -8,7 +8,7 @@
     "params": {}
   },
   "created_by": {
-    "core_version": "0.3.53"
+    "core_version": "0.3.57"
   },
   "framework": {
     "kind": "verl",
@@ -16,10 +16,10 @@
     "version": "0.9.0"
   },
   "recipe": {
-    "digest": "sha256:7d38d28f14d12b011c43d84522d07de888abee75d5c5da926c8fdccde2e060fb",
-    "manifest_digest": "sha256:853a132126cf3d103c061f7047000f35cf640037250a2dc0d5e39f38f671b177",
+    "digest": "sha256:005475b875a0df2f8db83a90a5097bdbc174f1423b22573bd76bc714ef84a78e",
+    "manifest_digest": "sha256:d63ff4e641eea708a11f1d7b9d3962715d91df71c3ff14d9bfd82d7c83fd3f2e",
     "name": "verl/sft",
-    "template_digest": "sha256:f73130632a88d3962579778972980874712722af3fa287a3b1c820489a19747b",
+    "template_digest": "sha256:c03e7bd6adb259834c315599316d5e9167daf464e0f0f2ecf258e21997ca4183",
     "version": "0.9.0"
   },
   "requires": {

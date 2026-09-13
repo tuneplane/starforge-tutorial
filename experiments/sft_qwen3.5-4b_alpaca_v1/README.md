@@ -39,7 +39,7 @@ export ALPACA_DATA_DIR="$(pwd)/datasets/alpaca"   # 供 config.yaml 的 ${oc.env
 ## 运行
 
 ```bash
-sf submit sft_qwen3.5-4b_alpaca_v1
+tuneplane submit sft_qwen3.5-4b_alpaca_v1
 ```
 
 产物落到本目录 `outputs/`（已 .gitignore）。

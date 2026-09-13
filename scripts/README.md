@@ -1,6 +1,6 @@
 # scripts/
 
-Jobs go through the console: `sf login`, then `sf submit <exp>`. Nothing in this directory submits to Ray from your laptop.
+Jobs go through the console: `tuneplane login`, then `tuneplane submit <exp>`. Nothing in this directory submits to Ray from your laptop.
 
 | Script | Where it runs | What |
 | --- | --- | --- |

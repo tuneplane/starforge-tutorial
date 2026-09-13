@@ -1,5 +1,5 @@
 {
-  "apiVersion": "forge/recipe-lock/v4",
+  "apiVersion": "tuneplane/recipe-lock/v1",
   "bindings": {
     "entrypoint": {
       "kind": "experiment",
@@ -185,7 +185,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.53"
+    "core_version": "0.3.57"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -193,10 +193,10 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:e524d2e1623493daf60a1af5f99e1106fc063705cba354797cfca08456cee738",
-    "manifest_digest": "sha256:d5708626d34580be367f586849b03cf3e9f0a553b969c249feb06feac361bd46",
+    "digest": "sha256:4bc96b32dac5c245511fb097ddb6ed74f75c76a02ec316e3d5571aa2c46d8580",
+    "manifest_digest": "sha256:0a52c202a70e3f6850f7d94c00322a6554456297e15bd7cb09d2148f5a026450",
     "name": "nemo-rl/maxrl",
-    "template_digest": "sha256:6f92f42b4a5e42ab7a5949607f366c7f394de7e8791738f4a2a662093bb2be8e",
+    "template_digest": "sha256:7ecb91b46b64f64f9a25dcf5d04e5582c92c38c8d5e48be50eb13f93c6a249dc",
     "version": "0.1.0"
   },
   "requires": {

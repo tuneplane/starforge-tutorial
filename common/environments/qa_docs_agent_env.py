@@ -753,7 +753,7 @@ class QADocsAgentEnv(EnvironmentInterface[QADocsMetadata]):
         # reward-hacking 监控：同一批统计以 env/* 指标上报平台（best-effort），
         # 与训练主指标同看板，search_rate 掉 0 / 格式错误暴涨在 web 上直接可见。
         try:
-            from starforge.report import log
+            from tuneplane.report import log
 
             self._stats_flushes = getattr(self, "_stats_flushes", 0) + 1
             log({

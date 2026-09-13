@@ -16,7 +16,7 @@ my-plugin/
 ```
 
 ```yaml
-schema: forge/plugin/v1
+schema: tuneplane/plugin/v1
 name: my-plugin           # leaf name; public id is <owner>/<name>
 version: 0.1.0            # immutable; same version + different bytes → 409
 kind: algorithm           # algorithm | data-prep
@@ -29,7 +29,7 @@ requires:
 
 ## algorithm
 
-The platform unpacks the plugin under `forge_plugins/<name>/` and the launcher checks the digest, then:
+The platform unpacks the plugin under `tuneplane_plugins/<name>/` and the launcher checks the digest, then:
 
 ```python
 def install(params, **ctx) -> None: ...
@@ -48,8 +48,8 @@ Imports see the job package plus the training image. The plugin should be self-c
 No entrypoint. After install, CLI finds `prepare_<dataset>.py`:
 
 ```bash
-sf dataset prepare              # list (builtins + plugins)
-sf dataset prepare tiny_qa      # runs forge_plugins/*/prepare_tiny_qa.py
+tuneplane dataset prepare              # list (builtins + plugins)
+tuneplane dataset prepare tiny_qa      # runs tuneplane_plugins/*/prepare_tiny_qa.py
 ```
 
 The first-line docstring is the one-liner in that list. A builtin in `common/data/` wins on name clash. See `examples/tiny-qa-prep/`.
@@ -57,18 +57,18 @@ The first-line docstring is the one-liner in that list. A builtin in `common/dat
 ## Publish → install → submit
 
 ```bash
-sf plugin publish plugins/examples/rloo
-sf plugin ls
-sf plugin info <owner>/rloo
-sf plugin install <owner>/rloo --exp experiments/my-exp
-sf submit experiments/my-exp
+tuneplane plugin publish plugins/examples/rloo
+tuneplane plugin ls
+tuneplane plugin info <owner>/rloo
+tuneplane plugin install <owner>/rloo --exp experiments/my-exp
+tuneplane submit experiments/my-exp
 ```
 
 Digest is sha256 of the directory (skip `__pycache__` / `.pyc`). Publish, submit, and load each check it.
 
 ```python
 from pathlib import Path
-from starforge.plugins import load_manifest, directory_digest
+from tuneplane.plugins import load_manifest, directory_digest
 p = Path("plugins/examples/rloo")
 print(load_manifest(p), directory_digest(p))
 ```

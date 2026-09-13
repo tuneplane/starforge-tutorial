@@ -11,28 +11,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: starforge-tutorial
+          path: tuneplane-examples
 
       - uses: actions/checkout@v4
         with:
-          repository: ${{ github.repository_owner }}/starforge
-          token: ${{ secrets.FORGE_REPO_TOKEN || github.token }}
-          path: starforge
+          repository: ${{ github.repository_owner }}/tuneplane
+          token: ${{ secrets.TUNEPLANE_REPO_TOKEN || github.token }}
+          path: tuneplane
 
       - uses: astral-sh/setup-uv@v5
 
       - name: 示例项目测试
-        working-directory: starforge-tutorial
+        working-directory: tuneplane-examples
         run: |
           uv sync --extra dev || uv sync --extra dev --index https://pypi.org/simple
-          PYTHONPATH="$GITHUB_WORKSPACE/starforge/core" uv run --extra dev pytest -q
+          PYTHONPATH="$GITHUB_WORKSPACE/tuneplane/sdk/src" uv run --extra dev pytest -q
 
-      - name: sf validate 示例实验
-        working-directory: starforge-tutorial
+      - name: tuneplane validate 示例实验
+        working-directory: tuneplane-examples
         run: |
           # 两条不同的校验路径：nemo-rl 走 defaults 继承后的配置树，
           # pytorch 走平铺配置 + recipe 参数声明。一个过不代表另一个过。
-          PYTHONPATH="$GITHUB_WORKSPACE/starforge/core" \
-            uv run --project "$GITHUB_WORKSPACE/starforge" sf validate grpo_qwen3.5-4b_gsm8k_v1
-          PYTHONPATH="$GITHUB_WORKSPACE/starforge/core" \
-            uv run --project "$GITHUB_WORKSPACE/starforge" sf validate pytorch-imgcls_simple-cnn_digit-images_v1
+          PYTHONPATH="$GITHUB_WORKSPACE/tuneplane/sdk/src" \
+            uv run --project "$GITHUB_WORKSPACE/tuneplane" tuneplane validate grpo_qwen3.5-4b_gsm8k_v1
+          PYTHONPATH="$GITHUB_WORKSPACE/tuneplane/sdk/src" \
+            uv run --project "$GITHUB_WORKSPACE/tuneplane" tuneplane validate pytorch-imgcls_simple-cnn_digit-images_v1

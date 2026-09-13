@@ -10,4 +10,4 @@ NeMo-RL 0.7.0:
   - SFT OpenAI messages: `data.train_data_path`, `data.chat_key=messages`.
 - Custom processor: implement one and point `data.default.processor` at it (`math_hf_data_processor` / `sft_processor` in upstream).
 
-Scripts are in git. Raw / large outputs are not. `sf dataset prepare <name>` runs `prepare_<name>.py` and writes `datasets/<name>/`.
+Scripts are in git. Raw / large outputs are not. `tuneplane dataset prepare <name>` runs `prepare_<name>.py` and writes `datasets/<name>/`.

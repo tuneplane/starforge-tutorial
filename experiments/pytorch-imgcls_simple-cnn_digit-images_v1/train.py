@@ -21,10 +21,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import yaml
 
-# `starforge` is grouped with the third-party imports on purpose: this file's destination is a user
+# `tuneplane` is grouped with the third-party imports on purpose: this file's destination is a user
 # repo, where the SDK *is* a third-party package, and that is where `ruff check` runs on it. Keeping
-# it in a first-party block would be clean here and flagged in every repo `sf new` copies it into.
-from starforge.report import finish, init, log
+# it in a first-party block would be clean here and flagged in every repo `tuneplane new` copies it into.
+from tuneplane.report import finish, init, log
 from torch.nn.parallel import DistributedDataParallel
 from torch.utils.data import DataLoader, DistributedSampler
 from torchvision import datasets, transforms
@@ -145,7 +145,7 @@ def _fallback_root(kind: str) -> Path:
     The shared cache if the platform injected one (so the second run is free), otherwise the working
     directory, which is what a laptop wants.
     """
-    if cache := os.environ.get("FORGE_DATA_CACHE", "").strip():
+    if cache := os.environ.get("TUNEPLANE_DATA_CACHE", "").strip():
         return Path(cache) / kind
     return Path("data")
 

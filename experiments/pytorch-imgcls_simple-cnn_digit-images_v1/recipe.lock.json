@@ -1,5 +1,5 @@
 {
-  "apiVersion": "forge/recipe-lock/v4",
+  "apiVersion": "tuneplane/recipe-lock/v1",
   "bindings": {
     "entrypoint": {
       "kind": "experiment",
@@ -65,7 +65,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.53"
+    "core_version": "0.3.57"
   },
   "framework": {
     "kind": "pytorch",
@@ -73,10 +73,10 @@
     "version": "2.14.0"
   },
   "recipe": {
-    "digest": "sha256:12d22ed6e9319f3f3184038141fd79244eb4c1463143fbb34001bf270dc7e326",
-    "manifest_digest": "sha256:4d064626a7faf1ecb3a1088533ec19fa0e6914e4addff2d206e5dfc8e54c9e22",
+    "digest": "sha256:108dc1a11d7cf993d847c51c108d6d4a6a5832635ed57bac64699117aea10785",
+    "manifest_digest": "sha256:f160198205804ab150fa11bfa98b2d06d76b9c0debd709f5df3eb8fc6bdb6657",
     "name": "pytorch/image-classification",
-    "template_digest": "sha256:1eac2ae3783dea60a50fb577597f83ce5ce147c53df59e49e384953f9d31844a",
+    "template_digest": "sha256:257b2da18dfe3a82e994472bae7ded1da9ebd7fdf540c76c18223e04ade603cf",
     "version": "1.0.0"
   },
   "requires": {

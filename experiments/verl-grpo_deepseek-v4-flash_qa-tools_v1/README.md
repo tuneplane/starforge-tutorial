@@ -36,8 +36,8 @@ PP=8 且 EP=8 需要 `DP ≥ 8`，world size 至少 64。8 卡上只能 PP=1、E
 ## 提交
 
 ```bash
-sf validate verl-grpo_deepseek-v4-flash_qa-tools_v1
-sf submit verl-grpo_deepseek-v4-flash_qa-tools_v1 --profile h200 \
+tuneplane validate verl-grpo_deepseek-v4-flash_qa-tools_v1
+tuneplane submit verl-grpo_deepseek-v4-flash_qa-tools_v1 --profile h200 \
     --model deepseek-ai/DeepSeek-V4-Flash-0731 \
     --train-dataset aiden_lu/qa-rl-verl@v1 --train-data train.parquet \
     --validation-dataset aiden_lu/qa-rl-verl@v1 --validation-data val.parquet \

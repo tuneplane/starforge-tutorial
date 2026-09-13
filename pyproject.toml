@@ -1,7 +1,7 @@
 [project]
-name = "starforge-tutorial"
+name = "tuneplane-examples"
 version = "0.1.0"
-description = "Official StarForge example project: same layout as sf init (SFT / GRPO / Agent / verl / TRL)."
+description = "Official TunePlane example project: same layout as tuneplane init (SFT / GRPO / Agent / verl / TRL)."
 requires-python = ">=3.10"
 dependencies = []
 

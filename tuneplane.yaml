@@ -1,0 +1,7 @@
+# Marker for `tuneplane`: walk up until this file exists.
+# `name` is the project; the console groups runs as @<user>/<name>.
+# This repo is the official example (tuneplane-examples), not the CLI.
+# For daily work: pip install tuneplane && tuneplane init <your-repo>
+apiVersion: tuneplane/project/v1
+name: tuneplane-examples
+created_by: tuneplane 0.3.0

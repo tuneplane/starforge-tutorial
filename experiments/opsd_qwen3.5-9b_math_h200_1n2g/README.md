@@ -48,7 +48,7 @@
 每行 `{"problem": ..., "solution": <参考解全文>, "answer": <最终答案>}`。
 
 **不走 HF `dataset_name`** —— 集群无外网，在线拉取必然失败。生成与投放见
-`datasets/opsd_math/README.md`（`sf dataset prepare opsd_math` + rsync）。
+`datasets/opsd_math/README.md`（`tuneplane dataset prepare opsd_math` + rsync）。
 
 ## 关键参数
 
@@ -66,15 +66,15 @@
 ## 跑
 
 ```bash
-sf submit opsd_qwen3.5-9b_math_h200_1n2g          # 用实验自带的 h200-2g
+tuneplane submit opsd_qwen3.5-9b_math_h200_1n2g          # 用实验自带的 h200-2g
 ```
 
 ## 训练后评测（对照论文表格）
 
 ```bash
-sf eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <训练 run_id>
+tuneplane eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <训练 run_id>
 # 只评一个集 / 改协议参数（-- 之后原样透传给 eval.py）：
-sf eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <run_id> -- --datasets aime24 --n 4
+tuneplane eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <run_id> -- --datasets aime24 --n 4
 ```
 
 本目录的 `eval.py` 由 OPSD recipe 的显式 eval 生命周期入口调用。
@@ -86,7 +86,7 @@ sf eval opsd_qwen3.5-9b_math_h200_1n2g --run-id <run_id> -- --datasets aime24 --
 所以训练曲线上的数和最终报告里的数可比。分开写两套评测最容易出的事故不是算错，
 而是两边算得都对但口径不同，最后说不清差异从哪来。
 
-| | in-loop validation | `sf eval` |
+| | in-loop validation | `tuneplane eval` |
 | --- | --- | --- |
 | 时机 | 训练中每 20 步 | 训练结束后 |
 | 评测集 | 只 AIME24（省时间） | AIME24 + AIME25 + HMMT25 |

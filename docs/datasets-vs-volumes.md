@@ -23,17 +23,17 @@
 数据集在提交时引用，或写进 `config.yaml` 的 `data.train.dataset`：
 
 ```bash
-sf dataset push my-data v1 <目录>
-sf submit <实验> --profile <卡型>:1 --train-dataset <你>/my-data@v1
+tuneplane dataset push my-data v1 <目录>
+tuneplane submit <实验> --profile <卡型>:1 --train-dataset <你>/my-data@v1
 ```
 
 Volume 只读挂在 `$VOLUMES_DIR/<名字>`，路径由平台定 —— 所以配置里写名字、让 `data_dir`
 去展开，**不要硬编码路径**：
 
 ```bash
-sf volume create my-photos
-sf volume push ./photos --name my-photos
-sf submit <实验> --profile <卡型>:1 --volume <你>/my-photos
+tuneplane volume create my-photos
+tuneplane volume push ./photos --name my-photos
+tuneplane submit <实验> --profile <卡型>:1 --volume <你>/my-photos
 ```
 
 ```yaml

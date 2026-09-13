@@ -76,7 +76,7 @@ actor_rollout_ref:
     agent:
       default_agent_loop: tool_agent
 
-# ⚠️ 两套键都要写、且指向同一文件：顶层是文档旧键（平台 sf validate 认它），
+# ⚠️ 两套键都要写、且指向同一文件：顶层是文档旧键（平台 tuneplane validate 认它），
 #    reward.* 是 verl 0.9 V1 实际读取的键。只写顶层时 V1 会走内置
 #    default_compute_score，碰到 data_source=rtl_rl 抛 NotImplementedError。
 custom_reward_function:

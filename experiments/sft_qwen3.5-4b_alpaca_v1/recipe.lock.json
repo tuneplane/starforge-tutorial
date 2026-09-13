@@ -1,5 +1,5 @@
 {
-  "apiVersion": "forge/recipe-lock/v4",
+  "apiVersion": "tuneplane/recipe-lock/v1",
   "bindings": {
     "entrypoint": {
       "kind": "file",
@@ -117,7 +117,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.53"
+    "core_version": "0.3.57"
   },
   "framework": {
     "kind": "nemo-rl",
@@ -125,10 +125,10 @@
     "version": "0.7.0"
   },
   "recipe": {
-    "digest": "sha256:c90058ffe1b94357de6df695dcfe8efe037eb2b551ddcbf8547fd21673369b8d",
-    "manifest_digest": "sha256:fd789df12cd02f6b4bd3c55a3eea690458388c501f2d029987f88874eec16ceb",
+    "digest": "sha256:6940f6b1d26438b5ddbaa4d5200e82f188ad87a785be279b88867c3d3703f616",
+    "manifest_digest": "sha256:ca23972f8a8e848b7d47ce1401617deb0a1c835156b61727053d61b5a2e20c4c",
     "name": "nemo-rl/sft",
-    "template_digest": "sha256:0149a6f4b0ed9749ca4055dfd6f5469742fcca16e81bccd8d7657c5411eab592",
+    "template_digest": "sha256:7c5386abf3596fb7536ece8a2cea2ef45048c721bb4dd6063f57e7364b249ac3",
     "version": "0.7.0"
   },
   "requires": {

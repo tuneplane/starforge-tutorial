@@ -1,5 +1,5 @@
 {
-  "apiVersion": "forge/recipe-lock/v4",
+  "apiVersion": "tuneplane/recipe-lock/v1",
   "bindings": {
     "entrypoint": {
       "kind": "experiment",
@@ -57,7 +57,7 @@
     }
   },
   "created_by": {
-    "core_version": "0.3.53"
+    "core_version": "0.3.57"
   },
   "framework": {
     "kind": "trl",
@@ -65,10 +65,10 @@
     "version": "1.10.0"
   },
   "recipe": {
-    "digest": "sha256:f3871cea5db87b4629827506432070f63b24207ba7f04ffbe64ea5619014fba7",
-    "manifest_digest": "sha256:223cd236d7d4cbdf7e9124e6e0718eed6a3c3582565ef00a1ce7196ebca15973",
+    "digest": "sha256:401c9c4e0171722913f9741d52d9212af31320b1bfb135b13e9b11c2e3266472",
+    "manifest_digest": "sha256:887035c26b170e11a7343e797ed1bf825c0a780329078b6dcbda9c5db42ac035",
     "name": "trl/grpo",
-    "template_digest": "sha256:b155d1c3446de3488431c59c0e6e86b6ab17742f8bcc4393edbf1a03afa0a496",
+    "template_digest": "sha256:21a1ae7fd2188ee45878057691c1cb7f29dbbc7f38e08b4d4c7f4674a6a91992",
     "version": "1.0.0"
   },
   "requires": {

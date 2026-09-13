@@ -16,7 +16,7 @@ config 的 reward.custom_reward_function.path（以及顶层旧键 custom_reward
   只是病因不同）。
 
 ★ 这个数与平台评测的 pass@1 **不是同一个口径**，也不该是。评测走 VerilogEval /
-  RTLLM 自带的 harness（sf bench run --suites verilogeval-v2），要的是可比；
+  RTLLM 自带的 harness（tuneplane bench run --suites verilogeval-v2），要的是可比；
   这里要的是坡度，所以给部分分、还额外扣综合期问题。报告效果时以评测侧为准。
 """
 from __future__ import annotations
