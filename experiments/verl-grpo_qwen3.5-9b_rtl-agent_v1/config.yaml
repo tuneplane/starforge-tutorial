@@ -68,7 +68,9 @@ actor_rollout_ref:
     gpu_memory_utilization: 0.5
     multi_turn:
       enable: true
-      format: hermes
+      # Qwen3.5 chat template 是 XML（<function=…><parameter=…>），不是 hermes JSON。
+      # 写成 hermes 时每条 rollout 都会 Failed to decode tool call，工具不执行。
+      format: qwen3_coder
       # 「写 → 编译 → 改 → 再编译 → 定稿」= 3 个 assistant 轮次。
       # 给到 4 以上时 max_response_length 要同步加，否则轨迹被截断反而更差。
       max_assistant_turns: 3

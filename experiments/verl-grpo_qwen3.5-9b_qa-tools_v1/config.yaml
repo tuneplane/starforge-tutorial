@@ -135,8 +135,12 @@ actor_rollout_ref:
     gpu_memory_utilization: 0.5
     multi_turn:
       enable: true
-      # 工具调用格式，须与模型 chat template 匹配（Qwen 系用 hermes）。
-      format: hermes
+      # 必须与 Qwen3.5 chat template 一致。模板要求
+      #   <tool_call><function=name><parameter=k>v</parameter></function></tool_call>
+      # 写成 hermes 时 AgentLoop 会对 <tool_call> 内文 json.loads，每条 rollout 打
+      # ERROR Failed to decode tool call: Expecting value: line 2 column 1 (char 1)，
+      # 检索工具永远不会执行。verl 0.9 的解析器名是 qwen3_coder（Qwen3XMLToolParser）。
+      format: qwen3_coder
       # == nemo-rl 侧 max_rollout_turns 3（原为 4，对齐 A/B 后改 3）。
       max_assistant_turns: 3
       # 本目录 tools.py 的 @function_tool 检索工具；路径相对作业包根（cwd）。

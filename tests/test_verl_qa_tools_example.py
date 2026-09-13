@@ -6,10 +6,13 @@
 from __future__ import annotations
 
 import importlib.util
+import json
+import re
 import sys
 import types
 from pathlib import Path
 
+import pytest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -103,6 +106,28 @@ def test_config_declares_official_agent_loop_contract():
     v1 = cfg["reward"]["custom_reward_function"]
     assert v1["path"] == reward_rel
     assert v1["name"] == cfg["custom_reward_function"]["name"] == "compute_score"
+    # Qwen3.5 chat template 要求 XML（<function=…><parameter=…>），不是 hermes JSON。
+    # format 直接送给 ToolParser.get_tool_parser；写成 hermes 时每条 rollout 都会
+    # ERROR Failed to decode tool call: Expecting value: line 2 column 1 (char 1)。
+    assert rollout["multi_turn"]["format"] == "qwen3_coder"
+
+
+def test_qwen35_tool_call_is_xml_not_hermes_json():
+    """验证样本里模型真的按 chat template 吐 XML；hermes 的 json.loads 正好炸在这一行。"""
+    body = (
+        "<tool_call>\n"
+        "<function=search_docs>\n"
+        "<parameter=query>\n"
+        "edx reject job\n"
+        "</parameter>\n"
+        "</function>\n"
+        "</tool_call>"
+    )
+    inner = re.search(r"<tool_call>(.*?)</tool_call>", body, re.DOTALL).group(1)
+    with pytest.raises(json.JSONDecodeError, match="Expecting value"):
+        json.loads(inner)
+    assert re.search(r"<function=([^>\n]+)>", body).group(1) == "search_docs"
+    assert re.search(r"<parameter=query>\s*(.*?)\s*</parameter>", body, re.DOTALL).group(1) == "edx reject job"
 
 
 def test_config_keeps_dataset_refs_out_of_hydra_overrides():

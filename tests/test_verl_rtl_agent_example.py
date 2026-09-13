@@ -163,6 +163,8 @@ def test_config_declares_official_agent_loop_contract():
     assert cfg["data"]["return_raw_chat"] is True
     rel = rollout["multi_turn"]["function_tool_path"]
     assert (ROOT / rel).is_file(), f"function_tool_path 必须指向仓库内文件: {rel}"
+    # 与 qa-tools 同一条 Qwen3.5 chat template：XML 工具调用，不是 hermes JSON。
+    assert rollout["multi_turn"]["format"] == "qwen3_coder"
 
     reward_rel = cfg["custom_reward_function"]["path"]
     assert (ROOT / reward_rel).is_file()

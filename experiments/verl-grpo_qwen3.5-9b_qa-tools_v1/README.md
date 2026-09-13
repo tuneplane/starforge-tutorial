@@ -105,7 +105,7 @@ tuneplane submit verl-grpo_qwen3.5-9b_qa-tools_v1 --profile h200:1 \
 5. **数据集行缺 `agent_name: "tool_agent"`** → 异步模式静默回落单轮、工具永不触发
    （issue #2986）。`prepare_data.py` 已注入；`config.yaml` 也设了 `default_agent_loop` 兜底。
 6. **`rollout.mode` 不是 `async`** → Agent Loop 不生效。
-7. **换模型时没验证 chat template 支持 `tools`** → hermes 的工具 schema 是靠
+7. **换模型时没验证 chat template 支持 `tools`** → 工具 schema 是靠
    `tokenizer.apply_chat_template(messages, tools=...)` 注入的（`workers/rollout/schemas.py`），
    模板不认 `tools` 就等于从没告诉模型有哪些工具，全程不出 `<tool_call>`，
    而训练照跑、只是 reward 平着——很难归因。
@@ -119,6 +119,12 @@ curl -s https://huggingface.co/<repo>/raw/main/tokenizer_config.json \
 ```
 
    模板确实不支持时，才需要换 `format` 为模型模板支持的格式。
+   ★ **`format` 还必须和模板里的调用语法一致**，不是「Qwen 系一律 hermes」。
+   Qwen3.5 模板要求 XML：`<tool_call><function=name><parameter=k>v</parameter></function></tool_call>`。
+   配成 `hermes` 时 AgentLoop 对 `<tool_call>` 内文 `json.loads`，日志刷
+   `ERROR Failed to decode tool call: Expecting value: line 2 column 1 (char 1)`，
+   训练不停、工具永远不跑（验证样本里会出现模型自己编的 `<tool_response>`）。
+   本实验必须用 `qwen3_coder`（verl 0.9 的 `Qwen3XMLToolParser`）。
    （对照：nemo-rl 路线用自定义 Environment 从裸文本解析 `<search>`，
    完全不经过 chat template，所以那边换模型没有这个约束。）
 8. **`max_prompt_length` 按题面裸长度估** → hermes 会把工具 JSON schema 注入 system，
